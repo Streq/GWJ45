@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/global/node_utils.gd"
 }, {
+"base": "Node2D",
+"class": "Pipe",
+"language": "GDScript",
+"path": "res://src/test/pipes/pipe.gd"
+}, {
 "base": "Node",
 "class": "PoolArray",
 "language": "GDScript",
@@ -54,6 +59,7 @@ _global_script_class_icons={
 "InputUtils": "",
 "Math": "",
 "NodeUtils": "",
+"Pipe": "",
 "PoolArray": "",
 "RenderUtils": "",
 "State": "",
@@ -62,8 +68,23 @@ _global_script_class_icons={
 
 [application]
 
-config/name="skel"
+config/name="GWJ45"
 config/icon="res://assets/texture/icon.png"
+
+[display]
+
+window/size/width=320
+window/size/height=240
+window/size/test_width=1280
+window/size/test_height=960
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+
+[importer_defaults]
+
+texture={
+"flags/filter": false
+}
 
 [physics]
 
