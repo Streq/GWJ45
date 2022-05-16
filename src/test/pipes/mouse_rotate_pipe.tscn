@@ -11,4 +11,5 @@ script = ExtResource( 3 )
 position = Vector2( 48, 32 )
 
 [node name="pipe2" parent="." instance=ExtResource( 2 )]
+process_priority = 0
 position = Vector2( 88, 32 )

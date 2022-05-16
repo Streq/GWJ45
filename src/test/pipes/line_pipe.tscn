@@ -59,6 +59,7 @@ extents = Vector2( 1, 2 )
 extents = Vector2( 8, 8 )
 
 [node name="pipe" type="Node2D"]
+process_priority = 1
 script = ExtResource( 2 )
 
 [node name="sprite_pipe" type="Sprite" parent="."]
@@ -114,6 +115,8 @@ collision_mask = 4
 shape = SubResource( 4 )
 
 [node name="pick_area" type="Area2D" parent="." groups=["pickable"]]
+collision_layer = 128
+collision_mask = 0
 script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pick_area"]

@@ -32,7 +32,7 @@ func _on_pick_area_input_event(viewport, event, shape_idx):
 
 func follow_mouse():
 	var mouse = get_global_mouse_position()
-	owner.global_position.x = stepify(mouse.x, 16.0)
-	owner.global_position.y = stepify(mouse.y, 16.0)
+	owner.global_position.x = stepify(mouse.x-8.0, 16.0)+8.0
+	owner.global_position.y = stepify(mouse.y-8.0, 16.0)+8.0
 	
 	
