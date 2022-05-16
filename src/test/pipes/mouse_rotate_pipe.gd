@@ -7,12 +7,5 @@ extends Node2D
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-#	for i in get_child_count()-1:
-#		var pipe : Pipe = get_children()[i]
-#		pipe.add_next(get_children()[i+1])
-	pass
 func _physics_process(delta):
-	pass 
-#	get_children()[0].flowing = true
-	
+	$pipe.flowing = true
