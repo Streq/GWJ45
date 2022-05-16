@@ -11,6 +11,7 @@ func _ready():
 func _process(delta):
 	if selected:
 		follow_mouse()
+	$highlight.visible = selected
 
 func _on_pick_area_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
