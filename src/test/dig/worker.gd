@@ -7,6 +7,7 @@ export var jump_speed := 200.0
 export var lerp_walk_speed := 10.0
 
 onready var drill := $drill
+onready var bag := $bag
 
 
 # Called when the node enters the scene tree for the first time.
@@ -23,4 +24,5 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
 	drill.position = dir*4.0
+
 	

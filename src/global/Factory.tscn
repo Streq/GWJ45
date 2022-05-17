@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/global/factory_item.gd" type="Script" id=1]
+[ext_resource path="res://src/test/pipes/line_pipe.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/test/pipes/angle_pipe.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/global/factory.gd" type="Script" id=4]
+
+[node name="factory" type="Node"]
+script = ExtResource( 4 )
+
+[node name="line_pipe" type="Node" parent="."]
+script = ExtResource( 1 )
+scene = ExtResource( 2 )
+
+[node name="angle_pipe" type="Node" parent="."]
+script = ExtResource( 1 )
+scene = ExtResource( 3 )

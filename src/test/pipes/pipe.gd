@@ -1,15 +1,17 @@
 extends Node2D
 class_name Pipe
 
+export var item_name : String
+
 onready var anim : AnimationPlayer = $AnimationPlayer
-
-var previous : Pipe = null
-var next : Pipe = null
-
 onready var entry : Position2D = $entry
 onready var exit : Position2D = $exit
 onready var exit_area : Area2D = $exit/Area2D
 onready var particles : CPUParticles2D = $exit/CPUParticles2D
+
+
+var previous : Pipe = null
+var next : Pipe = null
 var flowing = false
 var spilling = false
 var full = false
@@ -46,14 +48,23 @@ func remove_next():
 	if is_instance_valid(next):
 		next.previous = null
 		next = null
-		
+
+func remove_prev():
+	if is_instance_valid(previous):
+		previous.next = null
+		previous = null
+
 func on_no_fluid_in():
 	anim.play("empty_from_end")
 
 func _on_exit_area_entered(area):
 	if !is_instance_valid(next) and !is_instance_valid(area.owner.previous):
-		add_next(area.owner)
+		call_deferred("add_next", area.owner)
 
 func _on_exit_area_exited(area):
 	if area.owner == next:
-		remove_next()
+		call_deferred("remove_next")
+
+#func _exit_tree():
+#	remove_prev()
+#	remove_next()

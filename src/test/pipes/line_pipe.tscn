@@ -61,6 +61,7 @@ extents = Vector2( 8, 8 )
 [node name="pipe" type="Node2D"]
 process_priority = 1
 script = ExtResource( 2 )
+item_name = "line_pipe"
 
 [node name="sprite_pipe" type="Sprite" parent="."]
 texture = ExtResource( 1 )

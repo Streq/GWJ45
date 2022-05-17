@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/test/dig/ground.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/test/dig/worker.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/test/pipes/angle_pipe.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/texture/pipe.png" type="Texture" id=3]
 [ext_resource path="res://src/test/pipes/line_pipe.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/test/pipes/source.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/test/dig/current_item_hud.gd" type="Script" id=6]
+[ext_resource path="res://assets/texture/panel.png" type="Texture" id=7]
+[ext_resource path="res://src/test/pipes/angle_pipe.tscn" type="PackedScene" id=8]
 
 [node name="Node2D" type="Node2D"]
 
@@ -19,108 +23,144 @@ tile_data = PoolIntArray( 0, 0, 1, 1, 0, 196610, 2, 0, 196610, 3, 0, 196610, 4, 
 position = Vector2( 144, 86 )
 jump_speed = 100.0
 
-[node name="pipe" parent="." instance=ExtResource( 3 )]
-process_priority = 0
-modulate = Color( 0.556863, 0.168627, 0.168627, 1 )
-position = Vector2( 72, 72 )
-
-[node name="pipe2" parent="." instance=ExtResource( 3 )]
-process_priority = 0
-modulate = Color( 0, 0.0392157, 1, 1 )
-position = Vector2( 88, 72 )
-
-[node name="pipe14" parent="." instance=ExtResource( 3 )]
-process_priority = 0
-modulate = Color( 0, 0.0392157, 1, 1 )
-position = Vector2( 88, 88 )
-
-[node name="pipe15" parent="." instance=ExtResource( 3 )]
-process_priority = 0
-modulate = Color( 0, 0.0392157, 1, 1 )
-position = Vector2( 104, 88 )
-
-[node name="pipe16" parent="." instance=ExtResource( 3 )]
-process_priority = 0
-modulate = Color( 0, 0.0392157, 1, 1 )
-position = Vector2( 168, 88 )
-
-[node name="pipe3" parent="." instance=ExtResource( 4 )]
-modulate = Color( 0.921569, 0.454902, 0.847059, 1 )
-position = Vector2( 104, 72 )
-
-[node name="pipe4" parent="." instance=ExtResource( 4 )]
-modulate = Color( 0.756863, 1, 0, 1 )
-position = Vector2( 120, 72 )
-
-[node name="pipe19" parent="." instance=ExtResource( 4 )]
-modulate = Color( 0.756863, 1, 0, 1 )
-position = Vector2( 136, 88 )
-
-[node name="pipe20" parent="." instance=ExtResource( 4 )]
-modulate = Color( 0.756863, 1, 0, 1 )
-position = Vector2( 200, 88 )
-
-[node name="pipe21" parent="." instance=ExtResource( 4 )]
-modulate = Color( 0.756863, 1, 0, 1 )
-position = Vector2( 232, 88 )
-
-[node name="pipe22" parent="." instance=ExtResource( 4 )]
-modulate = Color( 0.756863, 1, 0, 1 )
-position = Vector2( 184, 88 )
-
-[node name="pipe5" parent="." instance=ExtResource( 3 )]
-process_priority = 0
-modulate = Color( 0.360784, 0.368627, 0.54902, 1 )
-position = Vector2( 136, 72 )
-
-[node name="pipe17" parent="." instance=ExtResource( 3 )]
-process_priority = 0
-modulate = Color( 0.360784, 0.368627, 0.54902, 1 )
-position = Vector2( 152, 88 )
-
-[node name="pipe18" parent="." instance=ExtResource( 3 )]
-process_priority = 0
-modulate = Color( 0.360784, 0.368627, 0.54902, 1 )
-position = Vector2( 216, 88 )
-
-[node name="pipe6" parent="." instance=ExtResource( 3 )]
-process_priority = 0
-modulate = Color( 0.560784, 0.717647, 0.658824, 1 )
-position = Vector2( 152, 72 )
-
-[node name="pipe11" parent="." instance=ExtResource( 3 )]
-process_priority = 0
-modulate = Color( 0.560784, 0.717647, 0.658824, 1 )
-position = Vector2( 232, 72 )
-
-[node name="pipe12" parent="." instance=ExtResource( 3 )]
-process_priority = 0
-modulate = Color( 0.560784, 0.717647, 0.658824, 1 )
-position = Vector2( 248, 72 )
-
-[node name="pipe13" parent="." instance=ExtResource( 3 )]
-process_priority = 0
-modulate = Color( 0.560784, 0.717647, 0.658824, 1 )
-position = Vector2( 248, 88 )
-
-[node name="pipe7" parent="." instance=ExtResource( 3 )]
-process_priority = 0
-modulate = Color( 0.0941176, 0.101961, 0.290196, 1 )
-position = Vector2( 168, 72 )
-
-[node name="pipe23" parent="." instance=ExtResource( 3 )]
-process_priority = 0
-modulate = Color( 0.0941176, 0.101961, 0.290196, 1 )
+[node name="pipe32" parent="." instance=ExtResource( 4 )]
 position = Vector2( 120, 88 )
 
-[node name="pipe8" parent="." instance=ExtResource( 4 )]
-modulate = Color( 0.921569, 0.454902, 0.847059, 1 )
+[node name="pipe33" parent="." instance=ExtResource( 4 )]
+position = Vector2( 120, 72 )
+
+[node name="pipe34" parent="." instance=ExtResource( 4 )]
+position = Vector2( 136, 72 )
+
+[node name="pipe35" parent="." instance=ExtResource( 4 )]
+position = Vector2( 152, 72 )
+
+[node name="pipe36" parent="." instance=ExtResource( 4 )]
+position = Vector2( 136, 88 )
+
+[node name="pipe37" parent="." instance=ExtResource( 4 )]
+position = Vector2( 152, 88 )
+
+[node name="pipe38" parent="." instance=ExtResource( 4 )]
+position = Vector2( 72, 88 )
+
+[node name="pipe39" parent="." instance=ExtResource( 4 )]
+position = Vector2( 72, 72 )
+
+[node name="pipe40" parent="." instance=ExtResource( 4 )]
+position = Vector2( 88, 72 )
+
+[node name="pipe41" parent="." instance=ExtResource( 4 )]
+position = Vector2( 104, 72 )
+
+[node name="pipe42" parent="." instance=ExtResource( 4 )]
+position = Vector2( 88, 88 )
+
+[node name="pipe43" parent="." instance=ExtResource( 4 )]
+position = Vector2( 104, 88 )
+
+[node name="source" parent="." instance=ExtResource( 5 )]
+position = Vector2( 24, 88 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="CenterContainer" parent="CanvasLayer"]
+anchor_left = 0.05
+anchor_right = 0.05
+margin_right = 16.0
+margin_bottom = 16.0
+script = ExtResource( 6 )
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = ExtResource( 7 )
+
+[node name="items" type="CenterContainer" parent="CanvasLayer/Control"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 8.0
+margin_bottom = 8.0
+
+[node name="line_pipe" type="Control" parent="CanvasLayer/Control/items"]
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/Control/items/line_pipe"]
+texture = ExtResource( 3 )
+vframes = 2
+
+[node name="amount" type="Label" parent="CanvasLayer/Control/items/line_pipe"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -8.0
+margin_top = 8.0
+margin_right = 8.0
+margin_bottom = 22.0
+text = "0"
+align = 1
+
+[node name="angle_pipe" type="Control" parent="CanvasLayer/Control/items"]
+visible = false
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/Control/items/angle_pipe"]
+texture = ExtResource( 3 )
+vframes = 2
+frame = 1
+
+[node name="amount" type="Label" parent="CanvasLayer/Control/items/angle_pipe"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -8.0
+margin_top = 8.0
+margin_right = 8.0
+margin_bottom = 22.0
+text = "0"
+align = 1
+
+[node name="pipe2" parent="." instance=ExtResource( 8 )]
 position = Vector2( 184, 72 )
 
-[node name="pipe9" parent="." instance=ExtResource( 4 )]
-modulate = Color( 0.545098, 0.545098, 0.545098, 1 )
+[node name="pipe3" parent="." instance=ExtResource( 8 )]
 position = Vector2( 200, 72 )
 
-[node name="pipe10" parent="." instance=ExtResource( 4 )]
-modulate = Color( 0.545098, 0.545098, 0.545098, 1 )
+[node name="pipe4" parent="." instance=ExtResource( 8 )]
 position = Vector2( 216, 72 )
+
+[node name="pipe5" parent="." instance=ExtResource( 8 )]
+position = Vector2( 184, 88 )
+
+[node name="pipe6" parent="." instance=ExtResource( 8 )]
+position = Vector2( 200, 88 )
+
+[node name="pipe7" parent="." instance=ExtResource( 8 )]
+position = Vector2( 216, 88 )
+
+[node name="pipe8" parent="." instance=ExtResource( 8 )]
+position = Vector2( 232, 72 )
+
+[node name="pipe9" parent="." instance=ExtResource( 8 )]
+position = Vector2( 248, 72 )
+
+[node name="pipe10" parent="." instance=ExtResource( 8 )]
+position = Vector2( 264, 72 )
+
+[node name="pipe11" parent="." instance=ExtResource( 8 )]
+position = Vector2( 232, 88 )
+
+[node name="pipe12" parent="." instance=ExtResource( 8 )]
+position = Vector2( 248, 88 )
+
+[node name="pipe13" parent="." instance=ExtResource( 8 )]
+position = Vector2( 264, 88 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 40.0
+margin_top = 16.0
+margin_right = 303.0
+margin_bottom = 64.0
+text = "z- agarrar/colocar     a- cambiar
+c- flip horizontal      x- taladrar    s- rotar
+d- flip vertical           flechitas- moverse"
