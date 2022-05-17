@@ -1,8 +1,6 @@
 extends Node2D
 class_name Pipe
 
-export var item_name : String
-
 onready var anim : AnimationPlayer = $AnimationPlayer
 onready var entry : Position2D = $entry
 onready var exit : Position2D = $exit

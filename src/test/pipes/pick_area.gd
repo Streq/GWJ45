@@ -1,5 +1,6 @@
 extends Area2D
 
+export var item_name : String
 var selected = false
 
 # Called when the node enters the scene tree for the first time.

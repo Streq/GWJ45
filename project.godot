@@ -127,7 +127,12 @@ rotate={
 
 [layer_names]
 
+2d_physics/layer_1="terrain"
 2d_physics/layer_2="oil"
+2d_physics/layer_3="pipe_entry"
+2d_physics/layer_4="ladder"
+2d_physics/layer_5="drillable"
+2d_physics/layer_8="pickup"
 
 [physics]
 

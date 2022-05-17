@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/test/dig/ground.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/test/dig/worker.tscn" type="PackedScene" id=2]
@@ -8,8 +8,9 @@
 [ext_resource path="res://src/test/dig/current_item_hud.gd" type="Script" id=6]
 [ext_resource path="res://assets/texture/panel.png" type="Texture" id=7]
 [ext_resource path="res://src/test/pipes/angle_pipe.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/test/pipes/pipe.gd" type="Script" id=9]
+[ext_resource path="res://assets/texture/ladder.png" type="Texture" id=9]
 [ext_resource path="res://src/test/dig/total.gd" type="Script" id=10]
+[ext_resource path="res://src/test/pipes/ladder.tscn" type="PackedScene" id=11]
 
 [node name="Node2D" type="Node2D"]
 
@@ -23,7 +24,6 @@ tile_data = PoolIntArray( 0, 0, 1, 1, 0, 196610, 2, 0, 196610, 3, 0, 196610, 4, 
 
 [node name="worker" parent="." instance=ExtResource( 2 )]
 position = Vector2( 144, 86 )
-jump_speed = 100.0
 
 [node name="pipe32" parent="." instance=ExtResource( 4 )]
 position = Vector2( 120, 88 )
@@ -77,7 +77,7 @@ margin_bottom = 26.0
 script = ExtResource( 6 )
 
 [node name="items" type="HBoxContainer" parent="CanvasLayer/Control"]
-margin_right = 40.0
+margin_right = 62.0
 margin_bottom = 18.0
 
 [node name="line_pipe" type="TextureRect" parent="CanvasLayer/Control/items"]
@@ -136,10 +136,37 @@ margin_bottom = 16.0
 text = "0"
 align = 1
 
-[node name="total" type="Label" parent="CanvasLayer/Control"]
+[node name="ladder" type="TextureRect" parent="CanvasLayer/Control/items"]
 margin_left = 44.0
+margin_right = 62.0
+margin_bottom = 18.0
+texture = ExtResource( 7 )
+
+[node name="display" type="Control" parent="CanvasLayer/Control/items/ladder"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/Control/items/ladder/display"]
+texture = ExtResource( 9 )
+
+[node name="amount" type="Label" parent="CanvasLayer/Control/items/ladder"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -8.0
 margin_top = 2.0
-margin_right = 65.0
+margin_right = 8.0
+margin_bottom = 16.0
+text = "0"
+align = 1
+
+[node name="total" type="Label" parent="CanvasLayer/Control"]
+margin_left = 66.0
+margin_top = 2.0
+margin_right = 87.0
 margin_bottom = 16.0
 text = "0/5"
 align = 1
@@ -147,51 +174,39 @@ script = ExtResource( 10 )
 
 [node name="pipe2" parent="." instance=ExtResource( 8 )]
 position = Vector2( 184, 72 )
-script = ExtResource( 9 )
 
 [node name="pipe3" parent="." instance=ExtResource( 8 )]
 position = Vector2( 200, 72 )
-script = ExtResource( 9 )
 
 [node name="pipe4" parent="." instance=ExtResource( 8 )]
 position = Vector2( 216, 72 )
-script = ExtResource( 9 )
 
 [node name="pipe5" parent="." instance=ExtResource( 8 )]
 position = Vector2( 184, 88 )
-script = ExtResource( 9 )
 
 [node name="pipe6" parent="." instance=ExtResource( 8 )]
 position = Vector2( 200, 88 )
-script = ExtResource( 9 )
 
 [node name="pipe7" parent="." instance=ExtResource( 8 )]
 position = Vector2( 216, 88 )
-script = ExtResource( 9 )
 
 [node name="pipe8" parent="." instance=ExtResource( 8 )]
 position = Vector2( 232, 72 )
-script = ExtResource( 9 )
 
 [node name="pipe9" parent="." instance=ExtResource( 8 )]
 position = Vector2( 248, 72 )
-script = ExtResource( 9 )
 
 [node name="pipe10" parent="." instance=ExtResource( 8 )]
 position = Vector2( 264, 72 )
-script = ExtResource( 9 )
 
 [node name="pipe11" parent="." instance=ExtResource( 8 )]
 position = Vector2( 232, 88 )
-script = ExtResource( 9 )
 
 [node name="pipe12" parent="." instance=ExtResource( 8 )]
 position = Vector2( 248, 88 )
-script = ExtResource( 9 )
 
 [node name="pipe13" parent="." instance=ExtResource( 8 )]
 position = Vector2( 264, 88 )
-script = ExtResource( 9 )
 
 [node name="Node2D" type="Node2D" parent="."]
 scale = Vector2( 0.75, 0.75 )
@@ -204,3 +219,21 @@ margin_bottom = 69.3333
 text = "z- agarrar/colocar     a- cambiar
 c- flip horizontal      x- taladrar    s- rotar
 d- flip vertical           flechitas- moverse"
+
+[node name="ladder" parent="." instance=ExtResource( 11 )]
+position = Vector2( 56, 88 )
+
+[node name="ladder2" parent="." instance=ExtResource( 11 )]
+position = Vector2( 56, 72 )
+
+[node name="ladder3" parent="." instance=ExtResource( 11 )]
+position = Vector2( 40, 72 )
+
+[node name="ladder4" parent="." instance=ExtResource( 11 )]
+position = Vector2( 40, 88 )
+
+[node name="ladder5" parent="." instance=ExtResource( 11 )]
+position = Vector2( 24, 88 )
+
+[node name="ladder6" parent="." instance=ExtResource( 11 )]
+position = Vector2( 24, 72 )

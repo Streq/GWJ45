@@ -9,7 +9,7 @@ signal hit_limit()
 export var limit := 5
 
 onready var shape :CollisionShape2D = $CollisionShape2D
-var pipes = {"line_pipe":0,"angle_pipe":0}
+var pipes = {"line_pipe":0,"angle_pipe":0,"ladder":0}
 var current = "line_pipe" setget set_current
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -53,7 +53,7 @@ func _physics_process(delta):
 			emit_signal("total_changed", get_count(), limit)
 
 func _on_bag_area_entered(area: Area2D):
-	var item = area.owner.item_name
+	var item = area.item_name
 	if get_count() < limit:
 		if !pipes.has(item):
 			pipes[item] = 0
