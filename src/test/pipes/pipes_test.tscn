@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/test/pipes/angle_pipe.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/test/pipes/line_pipe.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/test/pipes/pipes_test.gd" type="Script" id=3]
 [ext_resource path="res://src/test/pipes/source.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/test/pipes/pipe.gd" type="Script" id=5]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2( 32, 48 )
@@ -13,30 +14,35 @@ script = ExtResource( 3 )
 process_priority = 0
 modulate = Color( 0.556863, 0.168627, 0.168627, 1 )
 position = Vector2( 104, 8 )
+script = ExtResource( 5 )
 item_name = ""
 
 [node name="pipe2" parent="." instance=ExtResource( 1 )]
 process_priority = 0
 modulate = Color( 0, 0.0392157, 1, 1 )
 position = Vector2( 120, 8 )
+script = ExtResource( 5 )
 item_name = ""
 
 [node name="pipe14" parent="." instance=ExtResource( 1 )]
 process_priority = 0
 modulate = Color( 0, 0.0392157, 1, 1 )
 position = Vector2( 120, 24 )
+script = ExtResource( 5 )
 item_name = ""
 
 [node name="pipe15" parent="." instance=ExtResource( 1 )]
 process_priority = 0
 modulate = Color( 0, 0.0392157, 1, 1 )
 position = Vector2( 136, 24 )
+script = ExtResource( 5 )
 item_name = ""
 
 [node name="pipe16" parent="." instance=ExtResource( 1 )]
 process_priority = 0
 modulate = Color( 0, 0.0392157, 1, 1 )
 position = Vector2( 200, 24 )
+script = ExtResource( 5 )
 item_name = ""
 
 [node name="pipe3" parent="." instance=ExtResource( 2 )]
@@ -67,54 +73,63 @@ position = Vector2( 216, 24 )
 process_priority = 0
 modulate = Color( 0.360784, 0.368627, 0.54902, 1 )
 position = Vector2( 168, 8 )
+script = ExtResource( 5 )
 item_name = ""
 
 [node name="pipe17" parent="." instance=ExtResource( 1 )]
 process_priority = 0
 modulate = Color( 0.360784, 0.368627, 0.54902, 1 )
 position = Vector2( 184, 24 )
+script = ExtResource( 5 )
 item_name = ""
 
 [node name="pipe18" parent="." instance=ExtResource( 1 )]
 process_priority = 0
 modulate = Color( 0.360784, 0.368627, 0.54902, 1 )
 position = Vector2( 248, 24 )
+script = ExtResource( 5 )
 item_name = ""
 
 [node name="pipe6" parent="." instance=ExtResource( 1 )]
 process_priority = 0
 modulate = Color( 0.560784, 0.717647, 0.658824, 1 )
 position = Vector2( 184, 8 )
+script = ExtResource( 5 )
 item_name = ""
 
 [node name="pipe11" parent="." instance=ExtResource( 1 )]
 process_priority = 0
 modulate = Color( 0.560784, 0.717647, 0.658824, 1 )
 position = Vector2( 264, 8 )
+script = ExtResource( 5 )
 item_name = ""
 
 [node name="pipe12" parent="." instance=ExtResource( 1 )]
 process_priority = 0
 modulate = Color( 0.560784, 0.717647, 0.658824, 1 )
 position = Vector2( 280, 8 )
+script = ExtResource( 5 )
 item_name = ""
 
 [node name="pipe13" parent="." instance=ExtResource( 1 )]
 process_priority = 0
 modulate = Color( 0.560784, 0.717647, 0.658824, 1 )
 position = Vector2( 280, 24 )
+script = ExtResource( 5 )
 item_name = ""
 
 [node name="pipe7" parent="." instance=ExtResource( 1 )]
 process_priority = 0
 modulate = Color( 0.0941176, 0.101961, 0.290196, 1 )
 position = Vector2( 200, 8 )
+script = ExtResource( 5 )
 item_name = ""
 
 [node name="pipe23" parent="." instance=ExtResource( 1 )]
 process_priority = 0
 modulate = Color( 0.0941176, 0.101961, 0.290196, 1 )
 position = Vector2( 152, 24 )
+script = ExtResource( 5 )
 item_name = ""
 
 [node name="pipe8" parent="." instance=ExtResource( 2 )]
