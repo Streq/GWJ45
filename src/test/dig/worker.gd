@@ -47,6 +47,9 @@ func _physics_process(delta):
 	
 	drill.position = dir*4.0
 	
+	if Input.is_action_just_pressed("restart"):
+		get_tree().reload_current_scene()
+	
 func can_grab_ladder():
 	return ladder_detector.get_overlapping_areas().size()>0
 	

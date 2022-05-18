@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/font.png-ccd17c74875decee0f5501cfd78a5340.stex"
+path="res://.import/font.png-2a63f134257d8eff44fbfc46e48118e5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/font/font.png"
-dest_files=[ "res://.import/font.png-ccd17c74875decee0f5501cfd78a5340.stex" ]
+source_file="res://assets/texture/font.png"
+dest_files=[ "res://.import/font.png-2a63f134257d8eff44fbfc46e48118e5.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
