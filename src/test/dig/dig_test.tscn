@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/test/dig/ground.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/test/dig/worker.tscn" type="PackedScene" id=2]
@@ -11,6 +11,9 @@
 [ext_resource path="res://assets/texture/ladder.png" type="Texture" id=9]
 [ext_resource path="res://src/test/dig/total.gd" type="Script" id=10]
 [ext_resource path="res://src/test/pipes/ladder.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/test/dig/time.gd" type="Script" id=12]
+[ext_resource path="res://src/test/dig/lose_timer.gd" type="Script" id=13]
+[ext_resource path="res://src/test/dig/goal_pipe.tscn" type="PackedScene" id=14]
 
 [node name="Node2D" type="Node2D"]
 
@@ -23,49 +26,62 @@ modulate = Color( 0.227451, 0.227451, 0.227451, 1 )
 tile_data = PoolIntArray( 0, 0, 1, 1, 0, 196610, 2, 0, 196610, 3, 0, 196610, 4, 0, 196610, 5, 0, 196610, 6, 0, 196610, 7, 0, 196610, 8, 0, 196610, 9, 0, 196610, 10, 0, 196610, 11, 0, 196610, 12, 0, 196610, 13, 0, 196610, 14, 0, 196610, 15, 0, 196610, 16, 0, 196610, 17, 0, 196610, 18, 0, 196610, 19, 0, 3, 65536, 0, 65536, 65555, 0, 65536, 131072, 0, 65536, 131091, 0, 65536, 196608, 0, 65536, 196627, 0, 65536, 262144, 0, 65536, 262163, 0, 65536, 327680, 0, 65536, 327699, 0, 65536, 393216, 0, 65536, 393235, 0, 65536, 458752, 0, 65536, 458759, 0, 196609, 458760, 0, 196610, 458761, 0, 196610, 458762, 0, 196610, 458763, 0, 196610, 458764, 0, 196611, 458771, 0, 65536, 524288, 0, 65536, 524307, 0, 65536, 589824, 0, 65536, 589843, 0, 65536, 655360, 0, 65536, 655364, 0, 196609, 655365, 0, 196610, 655366, 0, 196611, 655372, 0, 196609, 655373, 0, 196610, 655374, 0, 196610, 655375, 0, 196611, 655379, 0, 65536, 720896, 0, 65536, 720915, 0, 65536, 786432, 0, 65536, 786451, 0, 65536, 851968, 0, 65536, 851987, 0, 65536, 917504, 0, 65536, 917513, 0, 0, 917523, 0, 65536, 983040, 0, 131073, 983041, 0, 196610, 983042, 0, 196610, 983043, 0, 196610, 983044, 0, 196610, 983045, 0, 196610, 983046, 0, 196610, 983047, 0, 196610, 983048, 0, 196610, 983049, 0, 131074, 983050, 0, 196610, 983051, 0, 196610, 983052, 0, 196610, 983053, 0, 196610, 983054, 0, 196610, 983055, 0, 196610, 983056, 0, 196610, 983057, 0, 196610, 983058, 0, 196610, 983059, 0, 131075 )
 
 [node name="worker" parent="." instance=ExtResource( 2 )]
-position = Vector2( 144, 86 )
+position = Vector2( 176, 86 )
 
 [node name="pipe32" parent="." instance=ExtResource( 4 )]
-position = Vector2( 120, 88 )
-
-[node name="pipe33" parent="." instance=ExtResource( 4 )]
-position = Vector2( 120, 72 )
-
-[node name="pipe34" parent="." instance=ExtResource( 4 )]
-position = Vector2( 136, 72 )
-
-[node name="pipe35" parent="." instance=ExtResource( 4 )]
-position = Vector2( 152, 72 )
-
-[node name="pipe36" parent="." instance=ExtResource( 4 )]
-position = Vector2( 136, 88 )
-
-[node name="pipe37" parent="." instance=ExtResource( 4 )]
 position = Vector2( 152, 88 )
 
+[node name="pipe33" parent="." instance=ExtResource( 4 )]
+position = Vector2( 152, 72 )
+
+[node name="pipe34" parent="." instance=ExtResource( 4 )]
+position = Vector2( 168, 72 )
+
+[node name="pipe35" parent="." instance=ExtResource( 4 )]
+position = Vector2( 184, 72 )
+
+[node name="pipe36" parent="." instance=ExtResource( 4 )]
+position = Vector2( 168, 88 )
+
+[node name="pipe37" parent="." instance=ExtResource( 4 )]
+position = Vector2( 184, 88 )
+
 [node name="pipe38" parent="." instance=ExtResource( 4 )]
-position = Vector2( 72, 88 )
+position = Vector2( 120, 88 )
 
 [node name="pipe39" parent="." instance=ExtResource( 4 )]
-position = Vector2( 72, 72 )
+position = Vector2( 120, 72 )
 
 [node name="pipe40" parent="." instance=ExtResource( 4 )]
-position = Vector2( 88, 72 )
+position = Vector2( 104, 88 )
 
 [node name="pipe41" parent="." instance=ExtResource( 4 )]
-position = Vector2( 104, 72 )
+position = Vector2( 200, 72 )
 
 [node name="pipe42" parent="." instance=ExtResource( 4 )]
-position = Vector2( 88, 88 )
+position = Vector2( 136, 88 )
 
 [node name="pipe43" parent="." instance=ExtResource( 4 )]
-position = Vector2( 104, 88 )
+position = Vector2( 200, 88 )
 
 [node name="source" parent="." instance=ExtResource( 5 )]
 position = Vector2( 152, 216 )
 rotation = -1.57079
 
+[node name="goal_pipe" parent="." instance=ExtResource( 14 )]
+position = Vector2( 136, 72 )
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="time" type="Label" parent="CanvasLayer"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = 22.0
+grow_horizontal = 0
+script = ExtResource( 12 )
 
 [node name="Control" type="HBoxContainer" parent="CanvasLayer"]
 anchor_left = 0.05
@@ -173,49 +189,49 @@ align = 1
 script = ExtResource( 10 )
 
 [node name="pipe2" parent="." instance=ExtResource( 8 )]
-position = Vector2( 184, 72 )
-
-[node name="pipe3" parent="." instance=ExtResource( 8 )]
-position = Vector2( 200, 72 )
-
-[node name="pipe4" parent="." instance=ExtResource( 8 )]
 position = Vector2( 216, 72 )
 
-[node name="pipe5" parent="." instance=ExtResource( 8 )]
-position = Vector2( 184, 88 )
-
-[node name="pipe6" parent="." instance=ExtResource( 8 )]
-position = Vector2( 200, 88 )
-
-[node name="pipe7" parent="." instance=ExtResource( 8 )]
-position = Vector2( 216, 88 )
-
-[node name="pipe8" parent="." instance=ExtResource( 8 )]
+[node name="pipe3" parent="." instance=ExtResource( 8 )]
 position = Vector2( 232, 72 )
 
-[node name="pipe9" parent="." instance=ExtResource( 8 )]
+[node name="pipe4" parent="." instance=ExtResource( 8 )]
 position = Vector2( 248, 72 )
 
-[node name="pipe10" parent="." instance=ExtResource( 8 )]
-position = Vector2( 264, 72 )
+[node name="pipe5" parent="." instance=ExtResource( 8 )]
+position = Vector2( 216, 88 )
 
-[node name="pipe11" parent="." instance=ExtResource( 8 )]
+[node name="pipe6" parent="." instance=ExtResource( 8 )]
 position = Vector2( 232, 88 )
 
-[node name="pipe12" parent="." instance=ExtResource( 8 )]
+[node name="pipe7" parent="." instance=ExtResource( 8 )]
 position = Vector2( 248, 88 )
 
-[node name="pipe13" parent="." instance=ExtResource( 8 )]
+[node name="pipe8" parent="." instance=ExtResource( 8 )]
+position = Vector2( 264, 72 )
+
+[node name="pipe9" parent="." instance=ExtResource( 8 )]
+position = Vector2( 280, 72 )
+
+[node name="pipe10" parent="." instance=ExtResource( 8 )]
+position = Vector2( 296, 72 )
+
+[node name="pipe11" parent="." instance=ExtResource( 8 )]
 position = Vector2( 264, 88 )
+
+[node name="pipe12" parent="." instance=ExtResource( 8 )]
+position = Vector2( 280, 88 )
+
+[node name="pipe13" parent="." instance=ExtResource( 8 )]
+position = Vector2( 296, 88 )
 
 [node name="Node2D" type="Node2D" parent="."]
 scale = Vector2( 0.75, 0.75 )
 
 [node name="Label" type="Label" parent="Node2D"]
 margin_left = 106.667
-margin_top = 21.3333
+margin_top = 32.0
 margin_right = 360.667
-margin_bottom = 69.3333
+margin_bottom = 80.0
 text = "z- agarrar/colocar     a- cambiar
 c- flip horizontal      x- taladrar    s- rotar
 d- flip vertical           flechitas- moverse"
@@ -237,3 +253,9 @@ position = Vector2( 24, 88 )
 
 [node name="ladder6" parent="." instance=ExtResource( 11 )]
 position = Vector2( 24, 72 )
+
+[node name="lose_timer" type="Timer" parent="." groups=["lose_timer"]]
+wait_time = 300.0
+one_shot = true
+autostart = true
+script = ExtResource( 13 )

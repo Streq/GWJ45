@@ -1,0 +1,91 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/texture/fill.png" type="Texture" id=1]
+[ext_resource path="res://assets/texture/pipe.png" type="Texture" id=2]
+[ext_resource path="res://src/test/pipes/pixel_snap.gd" type="Script" id=3]
+[ext_resource path="res://src/test/dig/goal_pipe.gd" type="Script" id=4]
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite_fill:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "fill"
+step = 0.111111
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite_fill:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.111111, 0.222222, 0.333333, 0.444444, 0.555556, 0.666667, 0.777778, 0.888889 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.888889 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "on_fluid_out"
+} ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 1, 2 )
+
+[node name="goal_pipe" type="Node2D" groups=["goal_pipe"]]
+position = Vector2( 152, 200 )
+rotation = 4.71238
+script = ExtResource( 4 )
+
+[node name="sprite_pipe" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+texture = ExtResource( 2 )
+vframes = 2
+region_rect = Rect2( 0, 0, 16, 16 )
+script = ExtResource( 3 )
+
+[node name="sprite_fill" type="Sprite" parent="."]
+modulate = Color( 0.392157, 0.392157, 0.392157, 1 )
+texture = ExtResource( 1 )
+hframes = 9
+region_enabled = true
+region_rect = Rect2( 0, 0, 144, 16 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_process_mode = 2
+anims/RESET = SubResource( 5 )
+anims/fill = SubResource( 6 )
+
+[node name="entry" type="Position2D" parent="."]
+position = Vector2( -8, -1.52588e-05 )
+
+[node name="Area2D" type="Area2D" parent="entry"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="entry/Area2D"]
+shape = SubResource( 4 )
+
+[connection signal="area_entered" from="entry/Area2D" to="." method="_on_exit_area_entered"]
+[connection signal="area_exited" from="entry/Area2D" to="." method="_on_exit_area_exited"]

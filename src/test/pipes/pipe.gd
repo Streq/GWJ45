@@ -9,7 +9,7 @@ onready var particles : CPUParticles2D = $exit/CPUParticles2D
 
 
 var previous : Pipe = null
-var next : Pipe = null
+var next : Node = null
 var flowing = false
 var spilling = false
 var full = false
