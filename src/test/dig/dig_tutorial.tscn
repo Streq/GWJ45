@@ -1,0 +1,159 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://src/terrain/ground.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/test/dig/worker.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/HUD/HUD.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/test/pipes/line_pipe.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/test/pipes/source.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/terrain/rock.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/font/BitmapFont.res" type="BitmapFont" id=7]
+[ext_resource path="res://src/test/pipes/angle_pipe.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/terrain/win_timer.gd" type="Script" id=9]
+[ext_resource path="res://src/test/pipes/ladder.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/test/dig/lose_timer.gd" type="Script" id=13]
+[ext_resource path="res://src/test/dig/goal_pipe.tscn" type="PackedScene" id=14]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ground" parent="." instance=ExtResource( 1 )]
+collision_layer = 17
+tile_data = PoolIntArray( 393217, 0, 8, 393218, 0, 10, 393219, 0, 10, 393220, 0, 10, 393221, 0, 10, 393222, 0, 10, 393223, 0, 10, 393224, 0, 10, 393225, 0, 10, 393226, 0, 10, 393227, 0, 10, 393228, 0, 10, 393229, 0, 10, 393230, 0, 10, 393231, 0, 10, 393232, 0, 10, 393233, 0, 10, 393234, 0, 11, 458753, 0, 65544, 458754, 0, 131081, 458755, 0, 131081, 458756, 0, 131081, 458757, 0, 131081, 458758, 0, 131081, 458759, 0, 131081, 458760, 0, 131081, 458761, 0, 131081, 458762, 0, 131081, 458763, 0, 131081, 458764, 0, 131081, 458765, 0, 131081, 458766, 0, 131081, 458767, 0, 131081, 458768, 0, 131081, 458769, 0, 131081, 458770, 0, 131083, 524289, 0, 196616, 524290, 0, 196617, 524291, 0, 196617, 524292, 0, 196617, 524293, 0, 196617, 524294, 0, 196617, 524295, 0, 196617, 524296, 0, 196617, 524297, 0, 196617, 524298, 0, 196617, 524299, 0, 196617, 524300, 0, 196617, 524301, 0, 196617, 524302, 0, 196617, 524303, 0, 196617, 524304, 0, 196617, 524305, 0, 196617, 524306, 0, 196619 )
+
+[node name="rock" parent="." instance=ExtResource( 6 )]
+tile_data = PoolIntArray( 0, 0, 1, 1, 0, 196610, 2, 0, 196610, 3, 0, 196610, 4, 0, 196610, 5, 0, 196610, 6, 0, 196610, 7, 0, 5, 8, 0, 10, 9, 0, 6, 10, 0, 196610, 11, 0, 196610, 12, 0, 196610, 13, 0, 196610, 14, 0, 196610, 15, 0, 196610, 16, 0, 196610, 17, 0, 196610, 18, 0, 196610, 19, 0, 3, 65536, 0, 65536, 65543, 0, 65544, 65544, 0, 131081, 65545, 0, 131083, 65555, 0, 65536, 131072, 0, 65536, 131079, 0, 196616, 131080, 0, 196618, 131081, 0, 196619, 131091, 0, 65536, 196608, 0, 65536, 196616, 0, 131072, 196627, 0, 65536, 262144, 0, 65536, 262163, 0, 65536, 327680, 0, 65536, 327699, 0, 65536, 393216, 0, 65536, 393235, 0, 65536, 458752, 0, 65536, 458762, 0, 196609, 458763, 0, 196610, 458764, 0, 3, 458771, 0, 65536, 524288, 0, 65536, 524300, 0, 65536, 524307, 0, 65536, 589824, 0, 65540, 589825, 0, 10, 589826, 0, 10, 589827, 0, 10, 589828, 0, 10, 589829, 0, 10, 589830, 0, 10, 589831, 0, 10, 589832, 0, 10, 589833, 0, 10, 589834, 0, 10, 589835, 0, 10, 589836, 0, 9, 589837, 0, 10, 589838, 0, 10, 589839, 0, 10, 589840, 0, 10, 589841, 0, 10, 589842, 0, 10, 589843, 0, 65543, 655360, 0, 65544, 655361, 0, 131081, 655362, 0, 131081, 655363, 0, 131081, 655364, 0, 131081, 655365, 0, 131081, 655366, 0, 131081, 655367, 0, 131081, 655368, 0, 131081, 655369, 0, 131081, 655370, 0, 131081, 655371, 0, 131081, 655372, 0, 131081, 655373, 0, 131081, 655374, 0, 131081, 655375, 0, 131081, 655376, 0, 131081, 655377, 0, 131081, 655378, 0, 131081, 655379, 0, 131083, 720896, 0, 65544, 720897, 0, 131081, 720898, 0, 131081, 720899, 0, 131081, 720900, 0, 131081, 720901, 0, 131081, 720902, 0, 131081, 720903, 0, 131081, 720904, 0, 131081, 720905, 0, 131081, 720906, 0, 131081, 720907, 0, 131081, 720908, 0, 131081, 720909, 0, 131081, 720910, 0, 131081, 720911, 0, 131081, 720912, 0, 131081, 720913, 0, 131081, 720914, 0, 131081, 720915, 0, 131083, 786432, 0, 65544, 786433, 0, 131081, 786434, 0, 131081, 786435, 0, 131081, 786436, 0, 131081, 786437, 0, 131081, 786438, 0, 131081, 786439, 0, 131081, 786440, 0, 131081, 786441, 0, 131081, 786442, 0, 131081, 786443, 0, 131081, 786444, 0, 131081, 786445, 0, 131081, 786446, 0, 131081, 786447, 0, 131081, 786448, 0, 131081, 786449, 0, 131081, 786450, 0, 131081, 786451, 0, 131083, 851968, 0, 65544, 851969, 0, 131081, 851970, 0, 131081, 851971, 0, 131081, 851972, 0, 131081, 851973, 0, 131081, 851974, 0, 131081, 851975, 0, 131081, 851976, 0, 131081, 851977, 0, 131081, 851978, 0, 131081, 851979, 0, 131081, 851980, 0, 131081, 851981, 0, 131081, 851982, 0, 131081, 851983, 0, 131081, 851984, 0, 131081, 851985, 0, 131081, 851986, 0, 131081, 851987, 0, 131083, 917504, 0, 65544, 917505, 0, 131081, 917506, 0, 131081, 917507, 0, 131081, 917508, 0, 131081, 917509, 0, 131081, 917510, 0, 131081, 917511, 0, 131081, 917512, 0, 131081, 917513, 0, 131081, 917514, 0, 131081, 917515, 0, 131081, 917516, 0, 131081, 917517, 0, 131081, 917518, 0, 131081, 917519, 0, 131081, 917520, 0, 131081, 917521, 0, 131081, 917522, 0, 131081, 917523, 0, 131083, 983040, 0, 196616, 983041, 0, 196617, 983042, 0, 196617, 983043, 0, 196617, 983044, 0, 196617, 983045, 0, 196617, 983046, 0, 196617, 983047, 0, 196617, 983048, 0, 196617, 983049, 0, 196617, 983050, 0, 196617, 983051, 0, 196617, 983052, 0, 196617, 983053, 0, 196617, 983054, 0, 196617, 983055, 0, 196617, 983056, 0, 196617, 983057, 0, 196617, 983058, 0, 196617, 983059, 0, 196619 )
+
+[node name="worker" parent="." instance=ExtResource( 2 )]
+position = Vector2( 176, 86 )
+
+[node name="pipe32" parent="." instance=ExtResource( 4 )]
+position = Vector2( 152, 88 )
+
+[node name="pipe33" parent="." instance=ExtResource( 4 )]
+position = Vector2( 152, 72 )
+
+[node name="pipe34" parent="." instance=ExtResource( 4 )]
+position = Vector2( 168, 72 )
+
+[node name="pipe35" parent="." instance=ExtResource( 4 )]
+position = Vector2( 184, 72 )
+
+[node name="pipe36" parent="." instance=ExtResource( 4 )]
+position = Vector2( 168, 88 )
+
+[node name="pipe37" parent="." instance=ExtResource( 4 )]
+position = Vector2( 184, 88 )
+
+[node name="pipe38" parent="." instance=ExtResource( 4 )]
+position = Vector2( 120, 88 )
+
+[node name="pipe39" parent="." instance=ExtResource( 4 )]
+position = Vector2( 120, 72 )
+
+[node name="pipe40" parent="." instance=ExtResource( 4 )]
+position = Vector2( 104, 88 )
+
+[node name="pipe41" parent="." instance=ExtResource( 4 )]
+position = Vector2( 200, 72 )
+
+[node name="pipe42" parent="." instance=ExtResource( 4 )]
+position = Vector2( 136, 88 )
+
+[node name="pipe43" parent="." instance=ExtResource( 4 )]
+position = Vector2( 200, 88 )
+
+[node name="source" parent="." instance=ExtResource( 5 )]
+position = Vector2( 184, 136 )
+rotation = -3.14159
+
+[node name="goal_pipe" parent="." instance=ExtResource( 14 )]
+position = Vector2( 136, 72 )
+rotation = 7.85397
+
+[node name="HUD" parent="." instance=ExtResource( 3 )]
+
+[node name="pipe2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 216, 72 )
+
+[node name="pipe3" parent="." instance=ExtResource( 8 )]
+position = Vector2( 232, 72 )
+
+[node name="pipe4" parent="." instance=ExtResource( 8 )]
+position = Vector2( 248, 72 )
+
+[node name="pipe5" parent="." instance=ExtResource( 8 )]
+position = Vector2( 216, 88 )
+
+[node name="pipe6" parent="." instance=ExtResource( 8 )]
+position = Vector2( 232, 88 )
+
+[node name="pipe7" parent="." instance=ExtResource( 8 )]
+position = Vector2( 248, 88 )
+
+[node name="pipe8" parent="." instance=ExtResource( 8 )]
+position = Vector2( 264, 72 )
+
+[node name="pipe9" parent="." instance=ExtResource( 8 )]
+position = Vector2( 280, 72 )
+
+[node name="pipe10" parent="." instance=ExtResource( 8 )]
+position = Vector2( 296, 72 )
+
+[node name="pipe11" parent="." instance=ExtResource( 8 )]
+position = Vector2( 264, 88 )
+
+[node name="pipe12" parent="." instance=ExtResource( 8 )]
+position = Vector2( 280, 88 )
+
+[node name="pipe13" parent="." instance=ExtResource( 8 )]
+position = Vector2( 296, 88 )
+
+[node name="ladder" parent="." instance=ExtResource( 11 )]
+position = Vector2( 56, 88 )
+
+[node name="ladder2" parent="." instance=ExtResource( 11 )]
+position = Vector2( 56, 72 )
+
+[node name="ladder3" parent="." instance=ExtResource( 11 )]
+position = Vector2( 40, 72 )
+
+[node name="ladder4" parent="." instance=ExtResource( 11 )]
+position = Vector2( 40, 88 )
+
+[node name="ladder5" parent="." instance=ExtResource( 11 )]
+position = Vector2( 24, 88 )
+
+[node name="ladder6" parent="." instance=ExtResource( 11 )]
+position = Vector2( 24, 72 )
+
+[node name="lose_timer" type="Timer" parent="." groups=["lose_timer"]]
+wait_time = 420.0
+one_shot = true
+autostart = true
+script = ExtResource( 13 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 88.0
+margin_top = 40.0
+margin_right = 276.0
+margin_bottom = 61.0
+custom_fonts/font = ExtResource( 7 )
+text = "c- excavar
+usar escaleras!!! o reinicar con R"
+
+[node name="win_text" type="Label" parent="."]
+visible = false
+margin_left = 72.0
+margin_top = 104.0
+margin_right = 260.0
+margin_bottom = 125.0
+custom_fonts/font = ExtResource( 7 )
+text = "sos 1 capo"
+align = 1
+
+[node name="win_timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+script = ExtResource( 9 )
+
+[connection signal="goal" from="goal_pipe" to="win_text" method="set_visible" binds= [ true ]]
+[connection signal="goal" from="goal_pipe" to="win_timer" method="_on_goal"]

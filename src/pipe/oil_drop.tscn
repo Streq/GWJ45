@@ -35,5 +35,12 @@ initial_velocity_random = 0.38
 
 [node name="particles_lifetime" type="Timer" parent="."]
 
+[node name="terrain_detect" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="terrain_detect"]
+shape = SubResource( 1 )
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="body_entered" from="terrain_detect" to="." method="_on_terrain"]

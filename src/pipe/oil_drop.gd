@@ -36,11 +36,16 @@ func set_last_entry(entry):
 func _on_area_exited(area):
 	if area.owner == last_entry and (!is_instance_valid(last_entry.a) or !is_instance_valid(last_entry.b)):
 		last_entry = null
-		yield(get_tree(), "idle_frame")
-		NodeUtils.reparent_keep_transform(self, get_tree().current_scene)
-		sprite.visible = false
-		particles.emitting = true
-		particles_lifetime.wait_time = particles.lifetime
-		particles_lifetime.start()
-		yield(particles_lifetime, "timeout")
-		queue_free()
+		call_deferred("exit_pipe")
+
+func exit_pipe():
+	NodeUtils.reparent_keep_transform(self, get_tree().current_scene)
+	sprite.visible = false
+	particles.emitting = true
+	particles_lifetime.wait_time = particles.lifetime
+	particles_lifetime.connect("timeout", self, "queue_free")
+	particles_lifetime.start()
+
+
+func _on_terrain(body):
+	queue_free()

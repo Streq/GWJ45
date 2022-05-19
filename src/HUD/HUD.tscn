@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/texture/pipe.png" type="Texture" id=1]
 [ext_resource path="res://assets/texture/panel.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/test/dig/total.gd" type="Script" id=4]
 [ext_resource path="res://src/test/dig/current_item_hud.gd" type="Script" id=5]
 [ext_resource path="res://src/test/dig/time.gd" type="Script" id=6]
+[ext_resource path="res://assets/font/BitmapFont.res" type="BitmapFont" id=7]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -56,6 +57,7 @@ margin_left = -8.0
 margin_top = 2.0
 margin_right = 8.0
 margin_bottom = 16.0
+custom_fonts/font = ExtResource( 7 )
 text = "0"
 align = 1
 
@@ -85,6 +87,7 @@ margin_left = -8.0
 margin_top = 2.0
 margin_right = 8.0
 margin_bottom = 16.0
+custom_fonts/font = ExtResource( 7 )
 text = "0"
 align = 1
 
@@ -112,14 +115,16 @@ margin_left = -8.0
 margin_top = 2.0
 margin_right = 8.0
 margin_bottom = 16.0
+custom_fonts/font = ExtResource( 7 )
 text = "0"
 align = 1
 
 [node name="total" type="Label" parent="Control"]
 margin_left = 66.0
-margin_top = 2.0
-margin_right = 87.0
-margin_bottom = 16.0
+margin_top = 6.0
+margin_right = 78.0
+margin_bottom = 11.0
+custom_fonts/font = ExtResource( 7 )
 text = "0/5"
 align = 1
 script = ExtResource( 4 )
