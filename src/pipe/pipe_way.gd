@@ -17,18 +17,21 @@ func _physics_process(delta):
 	tide = Tide.STATIC
 
 func _add_tide(coming_from: PipeEntry, val: int):
-	if coming_from == a:
-		if is_instance_valid(b):
-			b._add_tide(self, val)
-		tide += val*Tide.TOWARDS_B
-	elif coming_from == b:
-		if is_instance_valid(a):
-			a._add_tide(self, val)
-		tide += val*Tide.TOWARDS_A
-	else:
-		push_error("the provided PipeEntry isn't an entry")
-	
-	
+	var current_entry = self
+	while is_instance_valid(current_entry):
+		if coming_from == current_entry.a:
+			current_entry.tide += val*Tide.TOWARDS_B
+			coming_from = current_entry
+			current_entry = current_entry.b
+		elif coming_from == current_entry.b:
+			current_entry.tide += val*Tide.TOWARDS_A
+			coming_from = current_entry
+			current_entry = current_entry.a
+		else:
+			push_error("the provided PipeEntry isn't an entry")
+			break
+
+		
 func get_opposite(of: PipeEntry):
 	if of == a:
 		return b;
