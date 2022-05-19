@@ -38,19 +38,18 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("bag"):
 		var areas = get_overlapping_areas()
 		if areas.size():
-			for area in areas:
-				_on_bag_area_entered(area)
-		elif pipes.has(current) and pipes[current]:
-			var pipe = Factory.items[current].scene.instance()
-			pipe.transform = pipe_transform
-			pipes[current] -= 1
-			emit_signal("picked_up", current, pipes[current])
-			owner.owner.add_child(pipe)
-			var dest = global_position
-			dest.x = stepify(dest.x-8.0, 16.0)+8.0
-			dest.y = stepify(dest.y-8.0, 16.0)+8.0
-			pipe.global_position = dest
-			emit_signal("total_changed", get_count(), limit)
+			_on_bag_area_entered(areas[-1])
+	if Input.is_action_just_pressed("put") and pipes.has(current) and pipes[current]:
+		var pipe = Factory.items[current].scene.instance()
+		pipe.transform = pipe_transform
+		pipes[current] -= 1
+		emit_signal("picked_up", current, pipes[current])
+		owner.owner.add_child(pipe)
+		var dest = global_position
+		dest.x = stepify(dest.x-8.0, 16.0)+8.0
+		dest.y = stepify(dest.y-8.0, 16.0)+8.0
+		pipe.global_position = dest
+		emit_signal("total_changed", get_count(), limit)
 
 func _on_bag_area_entered(area: Area2D):
 	var item = area.item_name

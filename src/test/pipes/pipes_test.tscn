@@ -13,31 +13,26 @@ script = ExtResource( 3 )
 process_priority = 0
 modulate = Color( 0.556863, 0.168627, 0.168627, 1 )
 position = Vector2( 104, 8 )
-item_name = ""
 
 [node name="pipe2" parent="." instance=ExtResource( 1 )]
 process_priority = 0
 modulate = Color( 0, 0.0392157, 1, 1 )
 position = Vector2( 120, 8 )
-item_name = ""
 
 [node name="pipe14" parent="." instance=ExtResource( 1 )]
 process_priority = 0
 modulate = Color( 0, 0.0392157, 1, 1 )
 position = Vector2( 120, 24 )
-item_name = ""
 
 [node name="pipe15" parent="." instance=ExtResource( 1 )]
 process_priority = 0
 modulate = Color( 0, 0.0392157, 1, 1 )
 position = Vector2( 136, 24 )
-item_name = ""
 
 [node name="pipe16" parent="." instance=ExtResource( 1 )]
 process_priority = 0
 modulate = Color( 0, 0.0392157, 1, 1 )
 position = Vector2( 200, 24 )
-item_name = ""
 
 [node name="pipe3" parent="." instance=ExtResource( 2 )]
 modulate = Color( 0.921569, 0.454902, 0.847059, 1 )
@@ -67,55 +62,46 @@ position = Vector2( 216, 24 )
 process_priority = 0
 modulate = Color( 0.360784, 0.368627, 0.54902, 1 )
 position = Vector2( 168, 8 )
-item_name = ""
 
 [node name="pipe17" parent="." instance=ExtResource( 1 )]
 process_priority = 0
 modulate = Color( 0.360784, 0.368627, 0.54902, 1 )
 position = Vector2( 184, 24 )
-item_name = ""
 
 [node name="pipe18" parent="." instance=ExtResource( 1 )]
 process_priority = 0
 modulate = Color( 0.360784, 0.368627, 0.54902, 1 )
 position = Vector2( 248, 24 )
-item_name = ""
 
 [node name="pipe6" parent="." instance=ExtResource( 1 )]
 process_priority = 0
 modulate = Color( 0.560784, 0.717647, 0.658824, 1 )
 position = Vector2( 184, 8 )
-item_name = ""
 
 [node name="pipe11" parent="." instance=ExtResource( 1 )]
 process_priority = 0
 modulate = Color( 0.560784, 0.717647, 0.658824, 1 )
 position = Vector2( 264, 8 )
-item_name = ""
 
 [node name="pipe12" parent="." instance=ExtResource( 1 )]
 process_priority = 0
 modulate = Color( 0.560784, 0.717647, 0.658824, 1 )
 position = Vector2( 280, 8 )
-item_name = ""
 
 [node name="pipe13" parent="." instance=ExtResource( 1 )]
 process_priority = 0
 modulate = Color( 0.560784, 0.717647, 0.658824, 1 )
 position = Vector2( 280, 24 )
-item_name = ""
 
 [node name="pipe7" parent="." instance=ExtResource( 1 )]
 process_priority = 0
 modulate = Color( 0.0941176, 0.101961, 0.290196, 1 )
 position = Vector2( 200, 8 )
-item_name = ""
 
 [node name="pipe23" parent="." instance=ExtResource( 1 )]
 process_priority = 0
 modulate = Color( 0.0941176, 0.101961, 0.290196, 1 )
 position = Vector2( 152, 24 )
-item_name = ""
 
 [node name="pipe8" parent="." instance=ExtResource( 2 )]
 modulate = Color( 0.921569, 0.454902, 0.847059, 1 )

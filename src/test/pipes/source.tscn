@@ -1,58 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/texture/pipe.png" type="Texture" id=1]
 [ext_resource path="res://src/test/pipes/pipe.gd" type="Script" id=2]
-[ext_resource path="res://assets/texture/fill.png" type="Texture" id=3]
+[ext_resource path="res://src/pipe/pipe_way.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/test/pipes/pixel_snap.gd" type="Script" id=5]
 [ext_resource path="res://src/test/pipes/flow.gd" type="Script" id=6]
-
-[sub_resource type="Animation" id=1]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("sprite_fill:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
-
-[sub_resource type="Animation" id=2]
-resource_name = "fill"
-step = 0.111111
-tracks/0/type = "value"
-tracks/0/path = NodePath("sprite_fill:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.111111, 0.222222, 0.333333, 0.444444, 0.555556, 0.666667, 0.777778, 0.888889 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.888889 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "on_fluid_out"
-} ]
-}
-
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 1, 2 )
 
 [node name="source" type="Node2D"]
 script = ExtResource( 2 )
@@ -64,37 +16,23 @@ vframes = 2
 region_rect = Rect2( 0, 0, 16, 16 )
 script = ExtResource( 5 )
 
-[node name="sprite_fill" type="Sprite" parent="."]
-modulate = Color( 0.392157, 0.392157, 0.392157, 1 )
-texture = ExtResource( 3 )
-hframes = 9
-region_enabled = true
-region_rect = Rect2( 0, 0, 144, 16 )
+[node name="points" type="Node2D" parent="."]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-playback_process_mode = 2
-anims/RESET = SubResource( 1 )
-anims/fill = SubResource( 2 )
+[node name="entry" parent="points" instance=ExtResource( 3 )]
+position = Vector2( -8, 0 )
+monitoring = false
+monitorable = false
 
-[node name="exit" type="Position2D" parent="."]
-position = Vector2( 8, 0 )
+[node name="mid" parent="points" instance=ExtResource( 3 )]
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="exit"]
-emitting = false
-amount = 32
-local_coords = false
-emission_shape = 2
-emission_rect_extents = Vector2( 2, 1 )
-
-[node name="Area2D" type="Area2D" parent="exit"]
-collision_layer = 0
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="exit/Area2D"]
-shape = SubResource( 4 )
-
-[node name="flow" type="Node" parent="."]
+[node name="flow" type="Node2D" parent="points/mid"]
 script = ExtResource( 6 )
 
-[connection signal="area_entered" from="exit/Area2D" to="." method="_on_exit_area_entered"]
-[connection signal="area_exited" from="exit/Area2D" to="." method="_on_exit_area_exited"]
+[node name="Timer" type="Timer" parent="points/mid/flow"]
+wait_time = 0.25
+autostart = true
+
+[node name="exit" parent="points" instance=ExtResource( 3 )]
+position = Vector2( 8, 0 )
+
+[connection signal="timeout" from="points/mid/flow/Timer" to="points/mid/flow" method="_on_timer_timeout"]
