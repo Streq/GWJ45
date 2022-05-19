@@ -39,7 +39,9 @@ func get_opposite(of: PipeEntry):
 
 
 func _on_area_entered(area: PipeEntry):
-	if get_global_direction().is_equal_approx(-area.get_global_direction()):
+	var dir_a = get_global_direction()
+	var dir_b = area.get_global_direction()
+	if (dir_a+dir_b).length_squared()<0.5:
 		if !is_instance_valid(a):
 			a = area
 		elif !is_instance_valid(b):

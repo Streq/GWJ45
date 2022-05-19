@@ -6,7 +6,7 @@
 extents = Vector2( 0.5, 0.5 )
 
 [node name="entry" type="Area2D"]
-process_priority = -1
+process_priority = -2
 collision_layer = 4
 collision_mask = 4
 script = ExtResource( 1 )

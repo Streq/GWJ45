@@ -26,10 +26,11 @@ monitorable = false
 [node name="mid" parent="points" instance=ExtResource( 3 )]
 
 [node name="flow" type="Node2D" parent="points/mid"]
+process_priority = -1
 script = ExtResource( 6 )
 
 [node name="Timer" type="Timer" parent="points/mid/flow"]
-wait_time = 0.25
+wait_time = 0.1
 autostart = true
 
 [node name="exit" parent="points" instance=ExtResource( 3 )]

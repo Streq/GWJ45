@@ -7,7 +7,6 @@
 
 [node name="goal_pipe" type="Node2D" groups=["goal_pipe"]]
 position = Vector2( 152, 200 )
-rotation = 4.71238
 script = ExtResource( 4 )
 
 [node name="sprite_pipe" type="Sprite" parent="."]
@@ -18,7 +17,7 @@ region_rect = Rect2( 0, 0, 16, 16 )
 script = ExtResource( 3 )
 
 [node name="entry" parent="." instance=ExtResource( 1 )]
-position = Vector2( 8, 7.62939e-05 )
+position = Vector2( 8, 6.10352e-05 )
 
 [connection signal="area_entered" from="entry/pipe_point" to="." method="_on_pipe_point_area_entered"]
 
