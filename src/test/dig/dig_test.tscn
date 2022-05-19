@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/terrain/ground.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/test/dig/worker.tscn" type="PackedScene" id=2]
@@ -6,13 +6,14 @@
 [ext_resource path="res://src/test/pipes/line_pipe.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/test/pipes/source.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/terrain/rock.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/test/pipes/pipe.gd" type="Script" id=7]
 [ext_resource path="res://src/test/pipes/angle_pipe.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/test/pipes/ladder.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/test/dig/lose_timer.gd" type="Script" id=13]
 [ext_resource path="res://src/test/dig/goal_pipe.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/font/BitmapFont.res" type="BitmapFont" id=15]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D2" type="Node2D"]
 
 [node name="ground" parent="." instance=ExtResource( 1 )]
 collision_layer = 17
@@ -71,39 +72,51 @@ rotation = 7.85397
 
 [node name="pipe2" parent="." instance=ExtResource( 8 )]
 position = Vector2( 216, 72 )
+script = ExtResource( 7 )
 
 [node name="pipe3" parent="." instance=ExtResource( 8 )]
 position = Vector2( 232, 72 )
+script = ExtResource( 7 )
 
 [node name="pipe4" parent="." instance=ExtResource( 8 )]
 position = Vector2( 248, 72 )
+script = ExtResource( 7 )
 
 [node name="pipe5" parent="." instance=ExtResource( 8 )]
 position = Vector2( 216, 88 )
+script = ExtResource( 7 )
 
 [node name="pipe6" parent="." instance=ExtResource( 8 )]
 position = Vector2( 232, 88 )
+script = ExtResource( 7 )
 
 [node name="pipe7" parent="." instance=ExtResource( 8 )]
 position = Vector2( 248, 88 )
+script = ExtResource( 7 )
 
 [node name="pipe8" parent="." instance=ExtResource( 8 )]
 position = Vector2( 264, 72 )
+script = ExtResource( 7 )
 
 [node name="pipe9" parent="." instance=ExtResource( 8 )]
 position = Vector2( 280, 72 )
+script = ExtResource( 7 )
 
 [node name="pipe10" parent="." instance=ExtResource( 8 )]
 position = Vector2( 296, 72 )
+script = ExtResource( 7 )
 
 [node name="pipe11" parent="." instance=ExtResource( 8 )]
 position = Vector2( 264, 88 )
+script = ExtResource( 7 )
 
 [node name="pipe12" parent="." instance=ExtResource( 8 )]
 position = Vector2( 280, 88 )
+script = ExtResource( 7 )
 
 [node name="pipe13" parent="." instance=ExtResource( 8 )]
 position = Vector2( 296, 88 )
+script = ExtResource( 7 )
 
 [node name="ladder" parent="." instance=ExtResource( 11 )]
 position = Vector2( 56, 88 )

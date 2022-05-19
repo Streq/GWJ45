@@ -9,9 +9,15 @@ onready var sprite = $Sprite
 var velocity := Vector2()
 func _physics_process(delta):
 	if last_entry == null:
-		velocity.y += 100.0 * delta
+		velocity.y += 75.0 * delta
 	else:
-		velocity = last_entry.get_tide_velocity()
+		var vel = last_entry.get_tide_velocity(global_position)
+		var next = last_entry.get_tide_next()
+#		if we are too close to next_entry for velocity to be valid
+		if is_instance_valid(next) and (vel == Vector2.ZERO or 
+			vel.length_squared()*delta*delta>global_position.distance_squared_to(next.global_position)): 
+			call_deferred("set_last_entry", next)
+		velocity = vel
 		
 	global_position += velocity * delta
 
@@ -29,7 +35,7 @@ func _on_area_entered(area : Area2D):
 	
 func set_last_entry(entry):
 	last_entry = entry
-	global_position = entry.global_position
+#	global_position = entry.global_position
 
 	NodeUtils.reparent_keep_transform(self, entry)
 
@@ -49,3 +55,8 @@ func exit_pipe():
 
 func _on_terrain(body):
 	queue_free()
+
+
+func _on_oil_drop_input_event(viewport, event, shape_idx):
+#	var vel = last_entry.get_tide_velocity(global_position)
+	pass # Replace with function body.

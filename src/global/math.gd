@@ -6,6 +6,8 @@ static func approach(val: float, target: float, amount: float) -> float:
 		return clamp(val-amount, target, val)
 	else:
 		return clamp(val+amount, val, target)
+
+	
 	
 static func angle_distance(from:float, to:float):
 	var difference: float = fmod(to - from, TAU)

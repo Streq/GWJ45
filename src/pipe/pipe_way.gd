@@ -60,7 +60,7 @@ func _on_area_exited(area):
 	elif area == b:
 		b = null
 
-func get_tide_velocity() -> Vector2:
+func get_tide_velocity(from) -> Vector2:
 	if !tide:
 		return Vector2.ZERO
 	else:
@@ -69,7 +69,8 @@ func get_tide_velocity() -> Vector2:
 			target = a.global_position if a else to_global(Vector2.RIGHT)
 		else:
 			target = b.global_position if b else to_global(Vector2.RIGHT)
-		return (target - global_position).normalized()*abs(tide)*10.0
+		
+		return (target - from).normalized()*abs(tide)*20.0
 	
 
 func get_tide_next() -> PipeEntry:

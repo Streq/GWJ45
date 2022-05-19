@@ -40,11 +40,11 @@ position = Vector2( 136, 8 )
 
 [node name="pipe4" parent="." instance=ExtResource( 2 )]
 modulate = Color( 0.756863, 1, 0, 1 )
-position = Vector2( 152, 48 )
+position = Vector2( 8, 40 )
 
 [node name="pipe19" parent="." instance=ExtResource( 2 )]
 modulate = Color( 0.756863, 1, 0, 1 )
-position = Vector2( 168, 24 )
+position = Vector2( 24, 40 )
 
 [node name="pipe20" parent="." instance=ExtResource( 2 )]
 modulate = Color( 0.756863, 1, 0, 1 )
@@ -66,7 +66,8 @@ position = Vector2( 168, -8 )
 [node name="pipe17" parent="." instance=ExtResource( 1 )]
 process_priority = 0
 modulate = Color( 0.360784, 0.368627, 0.54902, 1 )
-position = Vector2( 184, 48 )
+position = Vector2( 40, 40 )
+rotation = 1.57079
 
 [node name="pipe18" parent="." instance=ExtResource( 1 )]
 process_priority = 0
