@@ -6,7 +6,7 @@ func _ready():
 	for item in $items.get_children():
 		items[item.name] = item
 	
-	var bag = Group.get_one("player").bag
+	var bag = Group.get_one("player").get_node("bag")
 	
 	bag.connect("picked_up", self, "_on_item_amount_changed")
 	bag.connect("current_changed", self, "_on_current_changed")

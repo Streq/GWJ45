@@ -23,3 +23,6 @@ func _on_drill_body_entered(body):
 			for j in range(top_left.y, bot_right.y+1):
 				for i in range(top_left.x, bot_right.x+1):
 					tm.set_cell(i,j,-1)
+					var aux = position
+					position = position+Vector2(1,1)
+					position = aux
