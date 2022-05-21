@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/pipe/item_cursor.gd" type="Script" id=1]
+[ext_resource path="res://assets/texture/ladder.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6, 6 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 6, 6 )
+
+[node name="ladder_cursor" type="Node2D"]
+z_index = 4
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+vframes = 4
+
+[node name="blacklist_detectors" type="Node2D" parent="."]
+
+[node name="pickable_detector" type="Area2D" parent="blacklist_detectors"]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="blacklist_detectors/pickable_detector"]
+shape = SubResource( 1 )
+
+[node name="needed_detectors" type="Node2D" parent="."]
+
+[node name="background_detector" type="Area2D" parent="needed_detectors"]
+collision_layer = 0
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="needed_detectors/background_detector"]
+shape = SubResource( 2 )

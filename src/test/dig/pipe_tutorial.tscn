@@ -83,12 +83,6 @@ rotation = 3.14159
 
 [node name="HUD" parent="." instance=ExtResource( 3 )]
 
-[node name="pipe3" parent="." instance=ExtResource( 8 )]
-position = Vector2( 184, 72 )
-
-[node name="pipe4" parent="." instance=ExtResource( 8 )]
-position = Vector2( 200, 72 )
-
 [node name="lose_timer" type="Timer" parent="." groups=["lose_timer"]]
 wait_time = 420.0
 one_shot = true
@@ -132,5 +126,11 @@ margin_bottom = 133.0
 custom_fonts/font = ExtResource( 15 )
 text = "muy bien!!!!!!!!!!!!!!!!!!!!!!!puto"
 
-[connection signal="goal" from="goal_pipe" to="CanvasLayer/Label3" method="set_visible" binds= [ true ]]
+[node name="pipe2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 184, 72 )
+
+[node name="pipe3" parent="." instance=ExtResource( 8 )]
+position = Vector2( 200, 72 )
+
 [connection signal="goal" from="goal_pipe" to="win_timer" method="_on_goal"]
+[connection signal="goal" from="goal_pipe" to="CanvasLayer/Label3" method="set_visible" binds= [ true ]]

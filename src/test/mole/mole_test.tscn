@@ -79,9 +79,11 @@ rotation = 3.14159
 
 [node name="pipe3" parent="." instance=ExtResource( 8 )]
 position = Vector2( 184, 72 )
+z_index = 0
 
 [node name="pipe4" parent="." instance=ExtResource( 8 )]
 position = Vector2( 200, 72 )
+z_index = 0
 
 [node name="Label2" type="Label" parent="."]
 margin_left = 120.0

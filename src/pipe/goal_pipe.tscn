@@ -19,6 +19,13 @@ script = ExtResource( 3 )
 [node name="entry" parent="." instance=ExtResource( 2 )]
 position = Vector2( 8, 6.10352e-05 )
 
+[node name="sprite_pipe2" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+texture = ExtResource( 1 )
+vframes = 2
+region_rect = Rect2( 0, 0, 16, 16 )
+script = ExtResource( 3 )
+
 [connection signal="area_entered" from="entry/pipe_point" to="." method="_on_pipe_point_area_entered"]
 
 [editable path="entry"]

@@ -7,6 +7,11 @@ onready var particles = $CPUParticles2D
 onready var sprite = $Sprite
 
 var velocity := Vector2()
+
+func _ready():
+	particles_lifetime.connect("timeout", self, "queue_free")
+	
+
 func _physics_process(delta):
 	if last_entry == null:
 		velocity.y += 75.0 * delta
@@ -41,17 +46,17 @@ func set_last_entry(entry):
 
 func _on_area_exited(area):
 	if area.owner == last_entry and (!is_instance_valid(last_entry.a) or !is_instance_valid(last_entry.b)):
-		last_entry = null
 		call_deferred("exit_pipe")
 
 func exit_pipe():
-	NodeUtils.reparent_keep_transform(self, get_tree().current_scene)
-	sprite.visible = false
-	particles.emitting = true
-	particles_lifetime.wait_time = particles.lifetime
-	particles_lifetime.connect("timeout", self, "queue_free")
-	particles_lifetime.start()
-	$terrain_detect/CollisionShape2D.disabled = false
+	if (!is_instance_valid(last_entry.a) or !is_instance_valid(last_entry.b)):
+		last_entry = null
+		NodeUtils.reparent_keep_transform(self, get_tree().current_scene)
+		sprite.visible = false
+		particles.emitting = true
+		particles_lifetime.wait_time = particles.lifetime
+		particles_lifetime.start()
+		$terrain_detect/CollisionShape2D.disabled = false
 
 func _on_terrain(body):
 	queue_free()

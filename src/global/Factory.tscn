@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/global/packed_scene.gd" type="Script" id=1]
 [ext_resource path="res://src/pipe/line_pipe.tscn" type="PackedScene" id=2]
@@ -7,21 +7,28 @@
 [ext_resource path="res://src/pipe/ladder.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/pipe/oil_drop.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/HUD/heart.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/global/item.gd" type="Script" id=8]
+[ext_resource path="res://src/pipe/ladder_cursor.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/pipe/angle_pipe_cursor.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/pipe/pipe_cursor.tscn" type="PackedScene" id=11]
 
 [node name="factory" type="Node"]
 script = ExtResource( 4 )
 
 [node name="line_pipe" type="Node" parent="."]
-script = ExtResource( 1 )
+script = ExtResource( 8 )
 scene = ExtResource( 2 )
+put_cursor = ExtResource( 11 )
 
 [node name="angle_pipe" type="Node" parent="."]
-script = ExtResource( 1 )
+script = ExtResource( 8 )
 scene = ExtResource( 3 )
+put_cursor = ExtResource( 10 )
 
 [node name="ladder" type="Node" parent="."]
-script = ExtResource( 1 )
+script = ExtResource( 8 )
 scene = ExtResource( 5 )
+put_cursor = ExtResource( 9 )
 
 [node name="oil_drop" type="Node" parent="."]
 script = ExtResource( 1 )

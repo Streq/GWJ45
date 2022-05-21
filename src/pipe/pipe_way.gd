@@ -70,7 +70,7 @@ func get_tide_velocity(from) -> Vector2:
 		else:
 			target = b.global_position if b else to_global(Vector2.RIGHT)
 		
-		return (target - from).normalized()*abs(tide)*20.0
+		return (target - from).normalized()*abs(tide)*40.0
 	
 
 func get_tide_next() -> PipeEntry:
