@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/texture/pixel.png" type="Texture" id=1]
+[ext_resource path="res://src/test/pipes/pick_area.gd" type="Script" id=2]
+[ext_resource path="res://assets/texture/ladder.png" type="Texture" id=3]
+[ext_resource path="res://src/pipe/ladder.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6, 8 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 6, 1 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 8 )
+
+[node name="ladder" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+vframes = 4
+
+[node name="climbable" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="climbable"]
+shape = SubResource( 1 )
+
+[node name="upper_ladder_detect" type="Area2D" parent="."]
+position = Vector2( 0, -16 )
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="upper_ladder_detect"]
+shape = SubResource( 3 )
+
+[node name="lower_ladder_detect" type="Area2D" parent="."]
+position = Vector2( 0, 16 )
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lower_ladder_detect"]
+shape = SubResource( 3 )
+
+[node name="pick_area" type="Area2D" parent="." groups=["pickable"]]
+collision_layer = 128
+collision_mask = 0
+script = ExtResource( 2 )
+item_name = "ladder"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pick_area"]
+shape = SubResource( 2 )
+
+[node name="highlight" type="Sprite" parent="pick_area"]
+modulate = Color( 1, 1, 0, 0.270588 )
+position = Vector2( 8, 8 )
+scale = Vector2( 16, 16 )
+texture = ExtResource( 1 )
+
+[connection signal="area_entered" from="upper_ladder_detect" to="." method="_on_upper_ladder_detect_area_entered"]
+[connection signal="area_exited" from="upper_ladder_detect" to="." method="_on_upper_ladder_detect_area_exited"]
+[connection signal="area_entered" from="lower_ladder_detect" to="." method="_on_lower_ladder_detect_area_entered"]
+[connection signal="area_exited" from="lower_ladder_detect" to="." method="_on_lower_ladder_detect_area_exited"]
+[connection signal="input_event" from="pick_area" to="pick_area" method="_on_pick_area_input_event"]

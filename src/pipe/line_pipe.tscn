@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/texture/pipe.png" type="Texture" id=1]
+[ext_resource path="res://src/test/pipes/pipe.gd" type="Script" id=2]
+[ext_resource path="res://src/pipe/pipe_way.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/test/pipes/pick_area.gd" type="Script" id=4]
+[ext_resource path="res://src/test/pipes/pixel_snap.gd" type="Script" id=5]
+[ext_resource path="res://assets/texture/pixel.png" type="Texture" id=6]
+[ext_resource path="res://assets/texture/pipe_front.png" type="Texture" id=7]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 8, 8 )
+
+[node name="pipe" type="Node2D"]
+process_priority = 1
+script = ExtResource( 2 )
+
+[node name="sprite_pipe" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+vframes = 2
+region_rect = Rect2( 0, 0, 16, 16 )
+script = ExtResource( 5 )
+
+[node name="sprite_front" type="Sprite" parent="."]
+z_index = 1
+texture = ExtResource( 7 )
+vframes = 2
+region_rect = Rect2( 0, 0, 16, 16 )
+script = ExtResource( 5 )
+
+[node name="points" type="Node2D" parent="."]
+
+[node name="entry" parent="points" instance=ExtResource( 3 )]
+position = Vector2( -8, 0 )
+rotation = -3.14159
+
+[node name="exit" parent="points" instance=ExtResource( 3 )]
+position = Vector2( 8, 0 )
+
+[node name="pick_area" type="Area2D" parent="." groups=["pickable"]]
+collision_layer = 128
+collision_mask = 0
+script = ExtResource( 4 )
+item_name = "line_pipe"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pick_area"]
+shape = SubResource( 3 )
+
+[node name="highlight" type="Sprite" parent="pick_area"]
+visible = false
+modulate = Color( 1, 1, 0, 0.270588 )
+position = Vector2( 8, 8 )
+scale = Vector2( 16, 16 )
+texture = ExtResource( 6 )
+
+[connection signal="input_event" from="pick_area" to="pick_area" method="_on_pick_area_input_event"]
