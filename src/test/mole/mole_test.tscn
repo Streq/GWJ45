@@ -9,7 +9,7 @@
 [ext_resource path="res://src/pipe/angle_pipe.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/entities/mole/mole.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/test/dig/lose_timer.gd" type="Script" id=13]
-[ext_resource path="res://src/test/dig/goal_pipe.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/pipe/goal_pipe.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/font/BitmapFont.res" type="BitmapFont" id=15]
 
 [node name="Node2D" type="Node2D"]

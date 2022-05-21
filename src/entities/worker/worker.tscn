@@ -1,17 +1,17 @@
 [gd_scene load_steps=26 format=2]
 
-[ext_resource path="res://src/entities/worker/worker.gd" type="Script" id=1]
-[ext_resource path="res://assets/texture/worker.png" type="Texture" id=2]
-[ext_resource path="res://src/test/dig/drill.gd" type="Script" id=3]
-[ext_resource path="res://src/test/dig/bag.gd" type="Script" id=4]
-[ext_resource path="res://src/util/state_machine/state_machine.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/test/dig/air.gd" type="Script" id=6]
-[ext_resource path="res://src/test/dig/walk.gd" type="Script" id=7]
-[ext_resource path="res://src/test/dig/hurt.gd" type="Script" id=8]
+[ext_resource path="res://src/util/state_machine/state_machine.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/entities/worker/bag.gd" type="Script" id=2]
+[ext_resource path="res://src/entities/worker/drill.gd" type="Script" id=3]
+[ext_resource path="res://assets/texture/worker.png" type="Texture" id=4]
+[ext_resource path="res://src/entities/worker/worker.gd" type="Script" id=5]
+[ext_resource path="res://assets/texture/drill.png" type="Texture" id=6]
+[ext_resource path="res://src/entities/worker/walk.gd" type="Script" id=7]
+[ext_resource path="res://src/entities/worker/hurt.gd" type="Script" id=8]
 [ext_resource path="res://src/entities/worker/idle.gd" type="Script" id=9]
-[ext_resource path="res://src/test/dig/dead.gd" type="Script" id=10]
-[ext_resource path="res://src/test/dig/attack.gd" type="Script" id=11]
-[ext_resource path="res://assets/texture/drill.png" type="Texture" id=12]
+[ext_resource path="res://src/entities/worker/dead.gd" type="Script" id=10]
+[ext_resource path="res://src/entities/worker/air.gd" type="Script" id=11]
+[ext_resource path="res://src/entities/worker/attack.gd" type="Script" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7.5, 11 )
@@ -80,7 +80,7 @@ resource_name = "walk"
 
 [node name="worker" type="KinematicBody2D" groups=["player"]]
 collision_layer = 0
-script = ExtResource( 1 )
+script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -1.5, 0 )
@@ -89,7 +89,7 @@ shape = SubResource( 1 )
 [node name="pivot" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="pivot"]
-texture = ExtResource( 2 )
+texture = ExtResource( 4 )
 region_rect = Rect2( 0, 0, 8, 8 )
 
 [node name="drill" type="Area2D" parent="."]
@@ -102,7 +102,7 @@ script = ExtResource( 3 )
 shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="drill"]
-texture = ExtResource( 12 )
+texture = ExtResource( 6 )
 hframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="drill"]
@@ -112,7 +112,7 @@ anims/drill = SubResource( 19 )
 [node name="bag" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 128
-script = ExtResource( 4 )
+script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bag"]
 shape = SubResource( 3 )
@@ -131,7 +131,7 @@ collision_mask = 64
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
 shape = SubResource( 1 )
 
-[node name="state_machine" parent="." instance=ExtResource( 5 )]
+[node name="state_machine" parent="." instance=ExtResource( 1 )]
 start_state = "idle"
 
 [node name="idle" type="Node" parent="state_machine"]
@@ -141,10 +141,10 @@ script = ExtResource( 9 )
 script = ExtResource( 7 )
 
 [node name="air" type="Node" parent="state_machine"]
-script = ExtResource( 6 )
+script = ExtResource( 11 )
 
 [node name="attack" type="Node" parent="state_machine"]
-script = ExtResource( 11 )
+script = ExtResource( 12 )
 
 [node name="hurt" type="Node" parent="state_machine"]
 script = ExtResource( 8 )

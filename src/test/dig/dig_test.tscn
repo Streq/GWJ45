@@ -11,7 +11,7 @@
 [ext_resource path="res://src/terrain/ground_border.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/test/pipes/ladder.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/test/dig/lose_timer.gd" type="Script" id=13]
-[ext_resource path="res://src/test/dig/goal_pipe.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/pipe/goal_pipe.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/font/BitmapFont.res" type="BitmapFont" id=15]
 
 [node name="Node2D2" type="Node2D"]
