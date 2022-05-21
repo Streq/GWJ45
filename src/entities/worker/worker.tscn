@@ -1,6 +1,6 @@
 [gd_scene load_steps=26 format=2]
 
-[ext_resource path="res://src/test/dig/worker.gd" type="Script" id=1]
+[ext_resource path="res://src/entities/worker/worker.gd" type="Script" id=1]
 [ext_resource path="res://assets/texture/worker.png" type="Texture" id=2]
 [ext_resource path="res://src/test/dig/drill.gd" type="Script" id=3]
 [ext_resource path="res://src/test/dig/bag.gd" type="Script" id=4]
