@@ -37,7 +37,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Pipe",
 "language": "GDScript",
-"path": "res://src/test/pipes/pipe.gd"
+"path": "res://src/pipe/pipe.gd"
 }, {
 "base": "Area2D",
 "class": "PipeEntry",

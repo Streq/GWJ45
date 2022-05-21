@@ -3,13 +3,13 @@
 [ext_resource path="res://src/terrain/ground.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/worker/worker.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/HUD/HUD.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/test/pipes/line_pipe.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/test/pipes/source.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/pipe/line_pipe.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/pipe/source.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/terrain/rock.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/terrain/background.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/pipe/angle_pipe.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/terrain/ground_border.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/test/pipes/ladder.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/pipe/ladder.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/test/dig/lose_timer.gd" type="Script" id=13]
 [ext_resource path="res://src/pipe/goal_pipe.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/font/BitmapFont.res" type="BitmapFont" id=15]
@@ -137,7 +137,10 @@ one_shot = true
 autostart = true
 script = ExtResource( 13 )
 
-[node name="win_text" type="Label" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="win_text" type="Label" parent="CanvasLayer"]
 visible = false
 margin_left = 72.0
 margin_top = 104.0
@@ -147,4 +150,4 @@ custom_fonts/font = ExtResource( 15 )
 text = "bueno esto es todo por ahora grax por jugar!!!"
 align = 1
 
-[connection signal="goal" from="goal_pipe" to="win_text" method="set_visible" binds= [ true ]]
+[connection signal="goal" from="goal_pipe" to="CanvasLayer/win_text" method="set_visible" binds= [ true ]]

@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/global/packed_scene.gd" type="Script" id=1]
-[ext_resource path="res://src/test/pipes/line_pipe.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/pipe/line_pipe.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/pipe/angle_pipe.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/global/factory.gd" type="Script" id=4]
-[ext_resource path="res://src/test/pipes/ladder.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/pipe/ladder.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/pipe/oil_drop.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/HUD/heart.tscn" type="PackedScene" id=7]
 
