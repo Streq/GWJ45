@@ -15,7 +15,7 @@ func _process(delta):
 	$highlight.visible = selected
 
 func _on_pick_area_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton:
+	if OS.is_debug_build() and event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			if event.pressed:
 				for pickable in get_tree().get_nodes_in_group("pickable"):

@@ -83,7 +83,6 @@ collision_layer = 0
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -1.5, 0 )
 shape = SubResource( 1 )
 
 [node name="pivot" type="Node2D" parent="."]

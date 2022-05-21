@@ -21,7 +21,7 @@ onready var pivot = $pivot
 onready var anim = $AnimationPlayer
 
 var grabbing_ladder := false
-
+var air = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_hitpoints(hitpoints)
@@ -40,6 +40,7 @@ func _physics_process(delta):
 	
 	velocity.x = lerp(velocity.x, speed*dir.x, delta*lerp_walk_speed)
 	
+	
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		velocity.y -= jump_speed
 		
@@ -50,8 +51,14 @@ func _physics_process(delta):
 	else:
 		grabbing_ladder = false
 	
+	air = !is_on_floor()
+	var fall_speed = velocity.y
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
+	
+	if is_on_floor() and air and fall_speed > 100.0:
+		get_hurt(1, Vector2(0,-75))
+		
 	
 	drill.position = dir*10.0
 	drill.rotation = dir.angle()
@@ -75,13 +82,16 @@ func set_max_hitpoints(val):
 
 
 func _on_hurtbox_area_entered(area):
-	self.hitpoints -= 1
-	state_machine._change_state("hurt", null)
 	var dirx = sign(global_position.x - area.global_position.x)
 	if !dirx:
 		dirx = pivot.scale.x
 	else:
 		pivot.scale.x = -dirx
-	velocity.y -= 75.0
-	velocity.x += dirx*100.0
 	
+	get_hurt(1, Vector2(dirx*100.0, -75.0))
+	
+	
+func get_hurt(damage, knockback):
+	self.hitpoints -= damage
+#	state_machine._change_state("hurt", null)
+	velocity = knockback
