@@ -51,7 +51,7 @@ func exit_pipe():
 	particles_lifetime.wait_time = particles.lifetime
 	particles_lifetime.connect("timeout", self, "queue_free")
 	particles_lifetime.start()
-
+	$terrain_detect/CollisionShape2D.disabled = false
 
 func _on_terrain(body):
 	queue_free()

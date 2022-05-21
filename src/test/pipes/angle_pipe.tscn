@@ -8,6 +8,9 @@
 [node name="sprite_pipe" parent="." index="0"]
 frame = 1
 
+[node name="sprite_front" parent="." index="1"]
+frame = 1
+
 [node name="mid" parent="points" index="1" instance=ExtResource( 2 )]
 position = Vector2( -1, 1 )
 
@@ -15,5 +18,5 @@ position = Vector2( -1, 1 )
 position = Vector2( 0, 8 )
 rotation = 1.57079
 
-[node name="pick_area" parent="." index="2"]
+[node name="pick_area" parent="." index="3"]
 item_name = "angle_pipe"

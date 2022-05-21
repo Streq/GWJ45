@@ -106,6 +106,7 @@ anchor_bottom = 0.5
 
 [node name="Sprite" type="Sprite" parent="Control/items/ladder/display"]
 texture = ExtResource( 3 )
+vframes = 4
 
 [node name="amount" type="Label" parent="Control/items/ladder"]
 anchor_left = 0.5
