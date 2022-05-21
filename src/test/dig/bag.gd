@@ -10,7 +10,10 @@ export var limit := 5
 
 onready var shape :CollisionShape2D = $CollisionShape2D
 var pipes = {"line_pipe":0,"angle_pipe":0,"ladder":0}
+
 var current = "line_pipe" setget set_current
+var putting = false
+var in_hand = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	emit_signal("current_changed", current)
@@ -22,12 +25,12 @@ func set_pipe_transform(val):
 	emit_signal("pipe_transform_changed", pipe_transform)
 
 func _physics_process(delta):
-	if Input.is_action_just_pressed("flip_h"):
-		self.pipe_transform = pipe_transform.scaled(Vector2(-1.0,1.0))
-	
-	if Input.is_action_just_pressed("flip_v"):
-		self.pipe_transform = pipe_transform.scaled(Vector2(1.0,-1.0))
-	
+#	if Input.is_action_just_pressed("flip_h"):
+#		self.pipe_transform = pipe_transform.scaled(Vector2(-1.0,1.0))
+#
+#	if Input.is_action_just_pressed("flip_v"):
+#		self.pipe_transform = pipe_transform.scaled(Vector2(1.0,-1.0))
+#
 	if Input.is_action_just_pressed("rotate"):
 		self.pipe_transform = pipe_transform.rotated(PI/2.0)
 	
@@ -39,7 +42,8 @@ func _physics_process(delta):
 		var areas = get_overlapping_areas()
 		if areas.size():
 			_on_bag_area_entered(areas[-1])
-	if Input.is_action_just_pressed("put") and pipes.has(current) and pipes[current]:
+	putting = Input.is_action_pressed("put")
+	if Input.is_action_just_released("put") and pipes.has(current) and pipes[current]:
 		var areas = get_overlapping_areas()
 		if !areas.size():
 			var pipe = Factory.items[current].scene.instance()

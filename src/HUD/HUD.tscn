@@ -11,22 +11,12 @@
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
-[node name="time" type="Label" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -8.0
-margin_top = 8.0
-margin_right = -8.0
-margin_bottom = 22.0
-grow_horizontal = 0
-script = ExtResource( 6 )
-
 [node name="Control" type="HBoxContainer" parent="."]
 anchor_left = 0.05
 anchor_right = 0.05
 margin_left = -8.0
 margin_top = 8.0
-margin_right = 32.0
+margin_right = 296.0
 margin_bottom = 26.0
 script = ExtResource( 5 )
 
@@ -136,3 +126,19 @@ margin_left = 82.0
 margin_right = 82.0
 margin_bottom = 18.0
 script = ExtResource( 8 )
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+margin_left = 86.0
+margin_right = 86.0
+size_flags_vertical = 2
+
+[node name="time" type="Label" parent="Control"]
+margin_left = 90.0
+margin_top = 6.0
+margin_right = 304.0
+margin_bottom = 11.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+align = 2
+script = ExtResource( 6 )

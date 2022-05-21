@@ -53,8 +53,8 @@ func _physics_process(delta):
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
-	
-	drill.position = dir*4.0
+	drill.position = dir*10.0
+	drill.rotation = dir.angle()
 	
 	if Input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()

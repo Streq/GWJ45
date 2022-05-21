@@ -2,6 +2,7 @@ extends Area2D
 
 
 onready var shape :CollisionShape2D = $CollisionShape2D
+onready var anim :AnimationPlayer = $AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,6 +12,12 @@ func _ready():
 func _physics_process(delta):
 	for body in get_overlapping_bodies():
 		_on_drill_body_entered(body)
+	visible = Input.is_action_pressed("drill") and InputUtils.get_input_dir()
+	if visible:
+		anim.play("drill")
+	else:
+		anim.stop()
+
 func _on_drill_body_entered(body):
 	if body is TileMap:
 		var tm : TileMap = body
