@@ -180,3 +180,4 @@ align = 1
 
 [connection signal="goal" from="goal_pipe" to="win_timer" method="_on_goal"]
 [connection signal="goal" from="goal_pipe" to="CanvasLayer/win_text" method="set_visible" binds= [ true ]]
+[connection signal="timeout" from="win_timer" to="win_timer" method="_win"]

@@ -1,15 +1,16 @@
 extends State
 
-
+var init_anim_speed = 0.0
 # Initialize the state. E.g. change the animation
 func _enter(params):
 	owner.anim.play("ladder")
 	owner.grabbing_ladder = true
+	init_anim_speed = owner.anim.playback_speed
 
 # Clean up the state. Reinitialize values like a timer
 func _exit():
 	owner.grabbing_ladder = false
-	owner.anim.playback_speed = 1.0
+	owner.anim.playback_speed = init_anim_speed
 
 # Called during _process
 func _update(delta: float):

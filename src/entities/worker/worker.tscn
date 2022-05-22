@@ -366,7 +366,7 @@ region_rect = Rect2( 0, 0, 8, 8 )
 script = ExtResource( 26 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-playback_speed = 0.47
+playback_speed = 0.5
 anims/RESET = SubResource( 20 )
 anims/air = SubResource( 10 )
 anims/dead = SubResource( 11 )
