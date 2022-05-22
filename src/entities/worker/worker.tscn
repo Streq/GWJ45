@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://src/util/state_machine/state_machine.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/worker/bag.gd" type="Script" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://assets/audio/sfx/Taladro_PiedraDura.ogg" type="AudioStream" id=23]
 [ext_resource path="res://assets/audio/sfx/Colocar_tuberia.ogg" type="AudioStream" id=24]
 [ext_resource path="res://assets/audio/sfx/Girar_Tuberia.ogg" type="AudioStream" id=25]
+[ext_resource path="res://src/entities/worker/worker_sprite.gd" type="Script" id=26]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7.5, 11 )
@@ -362,6 +363,7 @@ flip_h = true
 hframes = 5
 vframes = 4
 region_rect = Rect2( 0, 0, 8, 8 )
+script = ExtResource( 26 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 0.47

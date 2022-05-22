@@ -59,6 +59,7 @@ func _physics_process(delta):
 	
 	if input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()
+		Global.worker_index+=1
 
 func can_grab_ladder():
 	return ladder_detector.get_overlapping_areas().size()>0
@@ -67,8 +68,9 @@ func set_hitpoints(val):
 	hitpoints = clamp(val, 0, max_hitpoints)
 	emit_signal("hitpoints_changed", hitpoints)
 	if hitpoints == 0:
+		Global.worker_index+=1
 		get_tree().reload_current_scene()
-
+	
 func set_max_hitpoints(val):
 	max_hitpoints = val
 	emit_signal("max_hitpoints_changed", max_hitpoints)

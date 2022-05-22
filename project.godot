@@ -102,6 +102,7 @@ Group="*res://src/global/group.gd"
 Factory="*res://src/global/Factory.tscn"
 Levels="*res://src/global/levels.tscn"
 Music="*res://src/global/music.tscn"
+Global="*res://src/global/global.tscn"
 
 [display]
 
