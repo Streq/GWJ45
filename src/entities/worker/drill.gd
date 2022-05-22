@@ -24,8 +24,8 @@ func _on_drill_body_entered(body):
 		var rect :RectangleShape2D = shape.shape
 		var rock = Group.get_one("rock")
 		if input.is_action_pressed("drill"):
-			var top_left : Vector2 = tm.world_to_map(shape.global_position-rect.extents)
-			var bot_right : Vector2 = tm.world_to_map(shape.global_position+rect.extents)
+			var top_left : Vector2 = tm.world_to_map(tm.to_local(shape.global_position-rect.extents))
+			var bot_right : Vector2 = tm.world_to_map(tm.to_local(shape.global_position+rect.extents))
 		
 			for j in range(top_left.y, bot_right.y+1):
 				for i in range(top_left.x, bot_right.x+1):

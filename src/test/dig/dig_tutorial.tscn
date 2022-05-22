@@ -18,6 +18,7 @@
 [ext_resource path="res://src/terrain/background_view.tscn" type="PackedScene" id=16]
 
 [node name="Node2D2" type="Node2D"]
+position = Vector2( 0, 144 )
 script = ExtResource( 15 )
 song = "gameplay"
 
@@ -155,10 +156,10 @@ script = ExtResource( 9 )
 layer = 3
 
 [node name="Label" type="Label" parent="CanvasLayer"]
-margin_left = 88.0
-margin_top = 24.0
-margin_right = 284.0
-margin_bottom = 61.0
+margin_left = 72.0
+margin_top = 328.0
+margin_right = 268.0
+margin_bottom = 365.0
 custom_fonts/font = ExtResource( 7 )
 text = "x- dig
 use ladders!
@@ -167,11 +168,10 @@ remember: if you get stuck, restart with R
 "
 
 [node name="win_text" type="Label" parent="CanvasLayer"]
-visible = false
-margin_left = 72.0
-margin_top = 104.0
-margin_right = 260.0
-margin_bottom = 125.0
+margin_left = 64.0
+margin_top = 376.0
+margin_right = 252.0
+margin_bottom = 397.0
 custom_fonts/font = ExtResource( 7 )
 text = "that's crazy!!"
 align = 1
