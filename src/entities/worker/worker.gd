@@ -21,6 +21,7 @@ onready var anim = $AnimationPlayer
 onready var input = $input
 onready var jump_audio = $jump
 onready var land_audio = $land
+onready var hurt_audio = $hurt
 
 
 var velocity = Vector2()

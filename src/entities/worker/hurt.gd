@@ -5,6 +5,7 @@ var first_frame = true
 func _enter(params):
 	owner.anim.play("hurt")
 	first_frame = true
+	owner.hurt_audio.play()
 
 # Clean up the state. Reinitialize values like a timer
 func _exit():

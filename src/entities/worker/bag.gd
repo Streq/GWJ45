@@ -8,7 +8,10 @@ signal hit_limit()
 
 export var limit := 5
 
-onready var shape :CollisionShape2D = $CollisionShape2D
+onready var shape : CollisionShape2D = $CollisionShape2D
+onready var put_sound = $put_sound
+onready var rotate_sound = $rotate_sound
+
 var enabled = true
 var pipes = {"line_pipe":0,"angle_pipe":0,"ladder":0}
 var cursors = {}
@@ -18,6 +21,8 @@ var current = "line_pipe" setget set_current
 var putting = false
 var in_hand = null
 var pipe_transform := Transform2D.IDENTITY setget set_pipe_transform
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -42,7 +47,7 @@ func _physics_process(delta):
 	var input = owner.input
 	if input.is_action_just_pressed("rotate"):
 		self.pipe_transform = pipe_transform.rotated(PI/2.0)
-	
+		rotate_sound.play()
 	if input.is_action_just_pressed("next_pipe"):
 		var items = pipes.keys()
 		var index = (items.find(current) + 1)%items.size()
@@ -78,7 +83,7 @@ func _process(delta):
 		owner.owner.add_child(pipe)
 		pipe.global_position = current_cursor.global_position
 		emit_signal("total_changed", get_count(), limit)
-
+		put_sound.play()
 func _on_bag_area_entered(area: Area2D):
 	var item = area.item_name
 	if get_count() < limit:

@@ -101,6 +101,7 @@ config/icon="res://assets/texture/icon.png"
 Group="*res://src/global/group.gd"
 Factory="*res://src/global/Factory.tscn"
 Levels="*res://src/global/levels.tscn"
+Music="*res://src/global/music.tscn"
 
 [display]
 
