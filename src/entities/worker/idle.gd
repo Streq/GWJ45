@@ -18,15 +18,15 @@ func _physics_update(delta: float):
 	var input = owner.input
 	if owner.is_on_floor():
 		if owner.has_ladder and input.dir.y<0:
-			emit_signal("finish", "ladder", null)
+			goto("ladder")
 		elif input.is_action_just_pressed("jump"):
-			owner.velocity.y -= owner.jump_speed
+			goto("jump")
 		elif input.dir.x:
-			emit_signal("finish", "walk", null)
+			goto("walk")
 		else:
 			owner.velocity.x = lerp(owner.velocity.x, 0, delta*owner.lerp_walk_speed)
 	else:
-		emit_signal("finish", "air", null)
+		goto("air")
 	
 	
 # Called during _input

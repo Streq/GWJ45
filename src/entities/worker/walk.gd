@@ -20,7 +20,7 @@ func _physics_update(delta: float):
 		if owner.has_ladder and input.dir.y<0:
 			emit_signal("finish", "ladder", null)
 		elif input.is_action_just_pressed("jump"):
-			owner.velocity.y -= owner.jump_speed
+			goto("jump")
 		elif input.dir.x:
 			owner.pivot.scale.x = sign(input.dir.x)
 			owner.velocity.x = lerp(owner.velocity.x, owner.speed*input.dir.x, delta*owner.lerp_walk_speed)

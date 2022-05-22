@@ -3,12 +3,13 @@ extends State
 
 # Initialize the state. E.g. change the animation
 func _enter(params):
-	owner.anim.play("air")
-
+	owner.anim.play("jump")
+	owner.anim.connect("animation_finished", self, "_on_animation_finished")
+	
 # Clean up the state. Reinitialize values like a timer
 func _exit():
-	return
-
+	owner.anim.disconnect("animation_finished", self, "_on_animation_finished")
+	
 # Called during _process
 func _update(delta: float):
 	return
@@ -17,13 +18,13 @@ func _update(delta: float):
 func _physics_update(delta: float):
 	var input = owner.input
 	if owner.is_on_floor():
-		goto("land")
-	else:
-		if owner.has_ladder and input.dir.y:
-			goto("ladder")
-		if input.dir.x:
-			owner.pivot.scale.x = sign(input.dir.x)
 		owner.velocity.x = lerp(owner.velocity.x, owner.speed*input.dir.x, delta*owner.lerp_walk_speed)
+	else:
+		goto("air")
+
+func _on_animation_finished(name):
+	owner.velocity.y -= owner.jump_speed
+	goto("air")
 	
 # Called during _input
 func _handle_input(event: InputEvent):
