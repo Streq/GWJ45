@@ -3,6 +3,8 @@ extends Node2D
 var can_put := true setget set_can_put
 
 
+func _enter_tree():
+	modulate = Color(0,1,0,1)
 
 func set_can_put(val):
 	if can_put != val:

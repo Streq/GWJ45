@@ -21,14 +21,17 @@ var pipe_transform := Transform2D.IDENTITY setget set_pipe_transform
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	emit_signal("current_changed", current)
+		
+func _enter_tree():
 	for pipe in pipes.keys():
 		cursors[pipe] = Factory.items[pipe].put_cursor.instance()
 		var cursor = cursors[pipe]
-		add_child(cursor)
+		get_tree().current_scene.call_deferred("add_child", cursor)
 		cursor.visible = false
 		cursor.owner = self
-		
-
+func _exit_tree():
+	for pipe in pipes.keys():
+		cursors[pipe].queue_free()
 
 func set_pipe_transform(val):
 	pipe_transform = val
@@ -54,7 +57,18 @@ func _physics_process(delta):
 			_on_bag_area_entered(areas[-1])
 	putting = Input.is_action_pressed("put")
 	
+	
+	
 	var current_cursor = cursors[current]
+	
+	if Input.is_action_just_released("put") and pipes.has(current) and pipes[current] and current_cursor.can_put:
+		var pipe = Factory.items[current].scene.instance()
+		pipe.transform = pipe_transform
+		pipes[current] -= 1
+		emit_signal("picked_up", current, pipes[current])
+		owner.owner.add_child(pipe)
+		pipe.global_position = current_cursor.global_position
+		emit_signal("total_changed", get_count(), limit)
 	current_cursor.visible = putting
 	if putting:
 		current_cursor.transform = pipe_transform
@@ -64,20 +78,6 @@ func _physics_process(delta):
 		current_cursor.global_position = cursor_pos
 		if pipes[current] <= 0: 
 			current_cursor.modulate.a = 0.5
-	
-	
-	if Input.is_action_just_released("put") and pipes.has(current) and pipes[current] and current_cursor.can_put:
-		var pipe = Factory.items[current].scene.instance()
-		pipe.transform = pipe_transform
-		pipes[current] -= 1
-		emit_signal("picked_up", current, pipes[current])
-		owner.owner.add_child(pipe)
-		var dest = global_position
-		dest.x = stepify(dest.x-8.0, 16.0)+8.0
-		dest.y = stepify(dest.y-8.0, 16.0)+8.0
-		pipe.global_position = dest
-		emit_signal("total_changed", get_count(), limit)
-
 func _on_bag_area_entered(area: Area2D):
 	var item = area.item_name
 	if get_count() < limit:

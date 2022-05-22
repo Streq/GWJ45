@@ -56,7 +56,7 @@ func _physics_process(delta):
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
-	if is_on_floor() and air and fall_speed > 100.0:
+	if is_on_floor() and air and fall_speed > 150.0:
 		get_hurt(1, Vector2(0,-75))
 		
 	
@@ -72,7 +72,8 @@ func can_grab_ladder():
 func set_hitpoints(val):
 	hitpoints = clamp(val, 0, max_hitpoints)
 	emit_signal("hitpoints_changed", hitpoints)
-
+	if hitpoints == 0:
+		get_tree().reload_current_scene()
 
 func set_max_hitpoints(val):
 	max_hitpoints = val
