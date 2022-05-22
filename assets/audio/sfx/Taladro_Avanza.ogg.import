@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Taladro_Avanza.ogg-fdb273366b4b32fadc0cacc16c7906fc.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/sfx/Taladro_Avanza.ogg"
+dest_files=[ "res://.import/Taladro_Avanza.ogg-fdb273366b4b32fadc0cacc16c7906fc.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

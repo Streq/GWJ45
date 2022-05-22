@@ -19,6 +19,9 @@ onready var state_machine := $state_machine
 onready var pivot = $pivot
 onready var anim = $AnimationPlayer
 onready var input = $input
+onready var jump_audio = $jump
+onready var land_audio = $land
+
 
 var velocity = Vector2()
 var has_ladder = false

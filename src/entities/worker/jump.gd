@@ -25,7 +25,7 @@ func _physics_update(delta: float):
 func _on_animation_finished(name):
 	owner.velocity.y -= owner.jump_speed
 	goto("air")
-	
+	owner.jump_audio.play()
 # Called during _input
 func _handle_input(event: InputEvent):
 	return

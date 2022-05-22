@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "AudioCrossfadePlayer",
+"language": "GDScript",
+"path": "res://src/util/audio/music_player.gd"
+}, {
 "base": "Reference",
 "class": "Bool",
 "language": "GDScript",
@@ -70,6 +75,7 @@ _global_script_classes=[ {
 "path": "res://src/entities/input_state.gd"
 } ]
 _global_script_class_icons={
+"AudioCrossfadePlayer": "",
 "Bool": "",
 "ButtonState": "",
 "InputUtils": "",

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Stairs_Step.ogg-281728ac229aec99f99845878c2aca32.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/sfx/Stairs_Step.ogg"
+dest_files=[ "res://.import/Stairs_Step.ogg-281728ac229aec99f99845878c2aca32.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Colocar_tuberia.ogg-4c98c16085dc42d3c0fcc30b661ecf1e.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/sfx/Colocar_tuberia.ogg"
+dest_files=[ "res://.import/Colocar_tuberia.ogg-4c98c16085dc42d3c0fcc30b661ecf1e.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -5,6 +5,7 @@ extends State
 func _enter(params):
 	owner.anim.play("land")
 	owner.anim.connect("animation_finished", self, "_on_animation_finished")
+	owner.land_audio.play()
 	
 # Clean up the state. Reinitialize values like a timer
 func _exit():

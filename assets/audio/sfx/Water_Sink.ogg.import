@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Water_Sink.ogg-70ca1bb8eced067418932e49369b4ef5.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/sfx/Water_Sink.ogg"
+dest_files=[ "res://.import/Water_Sink.ogg-70ca1bb8eced067418932e49369b4ef5.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

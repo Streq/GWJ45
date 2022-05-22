@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Taladro_PiedraDura.ogg-6b93a93efa9f6dc5fa3b55bfae8c647c.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/sfx/Taladro_PiedraDura.ogg"
+dest_files=[ "res://.import/Taladro_PiedraDura.ogg-6b93a93efa9f6dc5fa3b55bfae8c647c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
