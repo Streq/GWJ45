@@ -63,6 +63,11 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://src/util/state_machine/state_machine.gd"
+}, {
+"base": "Node",
+"class": "input_state",
+"language": "GDScript",
+"path": "res://src/entities/input_state.gd"
 } ]
 _global_script_class_icons={
 "Bool": "",
@@ -75,7 +80,8 @@ _global_script_class_icons={
 "PoolArray": "",
 "RenderUtils": "",
 "State": "",
-"StateMachine": ""
+"StateMachine": "",
+"input_state": ""
 }
 
 [application]

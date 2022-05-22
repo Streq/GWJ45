@@ -3,16 +3,13 @@ extends Area2D
 
 onready var shape :CollisionShape2D = $CollisionShape2D
 onready var anim :AnimationPlayer = $AnimationPlayer
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
+var enabled = true
 
 func _physics_process(delta):
+	var input = owner.input
 	for body in get_overlapping_bodies():
 		_on_drill_body_entered(body)
-	visible = Input.is_action_pressed("drill") and InputUtils.get_input_dir()
+	visible = input.is_action_pressed("drill") and input.dir
 	if visible:
 		anim.play("drill")
 	else:
@@ -20,10 +17,11 @@ func _physics_process(delta):
 
 func _on_drill_body_entered(body):
 	if body is TileMap:
+		var input = owner.input
 		var tm : TileMap = body
 		var rect :RectangleShape2D = shape.shape
 		var rock = Group.get_one("rock")
-		if Input.is_action_pressed("drill"):
+		if input.is_action_pressed("drill"):
 			var top_left : Vector2 = tm.world_to_map(shape.global_position-rect.extents)
 			var bot_right : Vector2 = tm.world_to_map(shape.global_position+rect.extents)
 		

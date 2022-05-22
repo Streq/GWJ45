@@ -9,6 +9,7 @@ signal hit_limit()
 export var limit := 5
 
 onready var shape :CollisionShape2D = $CollisionShape2D
+var enabled = true
 var pipes = {"line_pipe":0,"angle_pipe":0,"ladder":0}
 var cursors = {}
 
@@ -28,7 +29,7 @@ func _enter_tree():
 		var cursor = cursors[pipe]
 		get_tree().current_scene.call_deferred("add_child", cursor)
 		cursor.visible = false
-		cursor.owner = self
+#		cursor.owner = self
 func _exit_tree():
 	for pipe in pipes.keys():
 		cursors[pipe].queue_free()
@@ -38,38 +39,24 @@ func set_pipe_transform(val):
 	emit_signal("pipe_transform_changed", pipe_transform)
 
 func _physics_process(delta):
-#	if Input.is_action_just_pressed("flip_h"):
-#		self.pipe_transform = pipe_transform.scaled(Vector2(-1.0,1.0))
-#
-#	if Input.is_action_just_pressed("flip_v"):
-#		self.pipe_transform = pipe_transform.scaled(Vector2(1.0,-1.0))
-#
-	if Input.is_action_just_pressed("rotate"):
+	var input = owner.input
+	if input.is_action_just_pressed("rotate"):
 		self.pipe_transform = pipe_transform.rotated(PI/2.0)
 	
-	if Input.is_action_just_pressed("next_pipe"):
+	if input.is_action_just_pressed("next_pipe"):
 		var items = pipes.keys()
 		var index = (items.find(current) + 1)%items.size()
 		self.current = items[index]
-	if Input.is_action_just_pressed("bag"):
+	if input.is_action_just_pressed("bag") and enabled:
 		var areas = get_overlapping_areas()
 		if areas.size():
 			_on_bag_area_entered(areas[-1])
-	putting = Input.is_action_pressed("put")
+	putting = input.is_action_pressed("put") and enabled
 	
 	
 	
 	var current_cursor = cursors[current]
 	
-	if Input.is_action_just_released("put") and pipes.has(current) and pipes[current] and current_cursor.can_put:
-		var pipe = Factory.items[current].scene.instance()
-		pipe.transform = pipe_transform
-		pipes[current] -= 1
-		emit_signal("picked_up", current, pipes[current])
-		owner.owner.add_child(pipe)
-		pipe.global_position = current_cursor.global_position
-		emit_signal("total_changed", get_count(), limit)
-	current_cursor.visible = putting
 	if putting:
 		current_cursor.transform = pipe_transform
 		var cursor_pos = global_position
@@ -78,6 +65,20 @@ func _physics_process(delta):
 		current_cursor.global_position = cursor_pos
 		if pipes[current] <= 0: 
 			current_cursor.modulate.a = 0.5
+	current_cursor.visible = putting
+
+func _process(delta):
+	var input = owner.input
+	var current_cursor = cursors[current]
+	if enabled and input.is_action_just_released("put") and pipes.has(current) and pipes[current] and current_cursor.can_put:
+		var pipe = Factory.items[current].scene.instance()
+		pipe.transform = pipe_transform
+		pipes[current] -= 1
+		emit_signal("picked_up", current, pipes[current])
+		owner.owner.add_child(pipe)
+		pipe.global_position = current_cursor.global_position
+		emit_signal("total_changed", get_count(), limit)
+
 func _on_bag_area_entered(area: Area2D):
 	var item = area.item_name
 	if get_count() < limit:
