@@ -7,23 +7,36 @@ onready var ground_sound := $ground_sound
 onready var rock_sound := $rock_sound
 var enabled = true
 
+func has_ground() -> bool:
+	return get_overlapping_bodies().size()>0
+
 func _physics_process(delta):
+	
 	var input = owner.input
-	for body in get_overlapping_bodies():
-		_on_drill_body_entered(body)
-	visible = input.is_action_pressed("drill") and input.dir
+	if input.is_action_pressed("drill") \
+		and owner.cursor.is_within_range() \
+		and owner.cursor.available_action == "drill":
+			for body in get_overlapping_bodies():
+				_on_drill_body_entered(body)
+			rotation = (global_position-owner.global_position).angle()
+			visible = true
+	else:
+		visible = false
+	
+	
 	if visible:
 		anim.play("drill")
 	else:
 		anim.stop()
 
 func _on_drill_body_entered(body):
+	
 	if body is TileMap:
 		var input = owner.input
-		var tm : TileMap = body
-		var rect :RectangleShape2D = shape.shape
-		var rock = Group.get_one("rock")
 		if input.is_action_pressed("drill"):
+			var tm : TileMap = body
+			var rect :RectangleShape2D = shape.shape
+			var rock = Group.get_one("rock")
 			var top_left : Vector2 = tm.world_to_map(tm.to_local(shape.global_position-rect.extents))
 			var bot_right : Vector2 = tm.world_to_map(tm.to_local(shape.global_position+rect.extents))
 		

@@ -59,11 +59,14 @@ func _physics_process(delta):
 		var items = pipes.keys()
 		var index = (items.find(current) - 1)%items.size()
 		self.current = items[index]
-	if input.is_action_just_pressed("bag") and enabled:
+	if input.is_action_just_pressed("bag") and enabled \
+	and owner.cursor.is_within_range() \
+	and owner.cursor.available_action == "bag":
 		var areas = get_overlapping_areas()
 		if areas.size():
 			_on_bag_area_entered(areas[-1])
-	putting = input.is_action_pressed("put") and enabled
+		else: 
+			putting = true
 	
 	
 	
@@ -84,15 +87,21 @@ func _physics_process(delta):
 func _process(delta):
 	var input = owner.input
 	var current_cursor = cursors[current]
-	if enabled and input.is_action_just_released("put") and pipes.has(current) and pipes[current] and current_cursor.can_put:
-		var pipe = Factory.items[current].scene.instance()
-		pipe.transform = pipe_transform
-		pipes[current] -= 1
-		emit_signal("picked_up", current, pipes[current])
-		owner.owner.add_child(pipe)
-		pipe.global_position = current_cursor.global_position
-		emit_signal("total_changed", get_count(), limit)
-		put_sound.play()
+	if putting and input.is_action_just_released("bag") and owner.cursor.available_action == "bag":
+		putting = false
+		if enabled \
+		and pipes.has(current) \
+		and pipes[current] \
+		and current_cursor.can_put \
+		and owner.cursor.is_within_range():
+			var pipe = Factory.items[current].scene.instance()
+			pipe.transform = pipe_transform
+			pipes[current] -= 1
+			emit_signal("picked_up", current, pipes[current])
+			owner.owner.add_child(pipe)
+			pipe.global_position = current_cursor.global_position
+			emit_signal("total_changed", get_count(), limit)
+			put_sound.play()
 func _on_bag_area_entered(area: Area2D):
 	var item = area.item_name
 	if get_count() < limit:

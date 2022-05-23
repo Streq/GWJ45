@@ -12,8 +12,8 @@ export var lerp_climb_speed := 10.0
 export var hitpoints := 3 setget set_hitpoints
 export var max_hitpoints := 3 setget set_max_hitpoints
 
-onready var drill := $cursor_pivot/drill
-onready var bag := $cursor_pivot/bag
+onready var drill := $cursor/drill
+onready var bag := $cursor/bag
 onready var ladder_detector := $ladder_detector
 onready var state_machine := $state_machine
 onready var pivot = $pivot
@@ -22,13 +22,12 @@ onready var input = $input
 onready var jump_audio = $jump
 onready var land_audio = $land
 onready var hurt_audio = $hurt
-
+onready var cursor = $cursor
 
 var velocity = Vector2()
 var has_ladder = false
 var grabbing_ladder := false
 var air = false
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_hitpoints(hitpoints)
@@ -54,8 +53,6 @@ func _physics_process(delta):
 		get_hurt(1, Vector2(0,-75))
 		
 	
-	drill.position = dir*10.0
-	drill.rotation = dir.angle()
 	
 	if input.is_action_just_released("restart"):
 		get_tree().reload_current_scene()

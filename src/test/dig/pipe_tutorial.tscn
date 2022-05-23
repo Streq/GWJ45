@@ -122,9 +122,9 @@ margin_bottom = 373.0
 custom_fonts/font = ExtResource( 15 )
 text = "wasd- move
 space- jump
-shift- drill   
-left click- pick up          
-right click- put down (hold to visualize)
+left click- pick up
+            put down(hold to visualize) 
+            drill
 e,q- alternate pipe
 mousewheel- rotate pipe  
 r- restart         "

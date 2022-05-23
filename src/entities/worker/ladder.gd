@@ -20,13 +20,15 @@ func _update(delta: float):
 func _physics_update(delta: float):
 	var input = owner.input
 	if !owner.has_ladder or input.is_action_just_pressed("jump") and !input.dir.y:
-		goto("air")
+		return goto("air")
 	else:
-		owner.velocity = lerp(owner.velocity, input.dir*owner.climb_speed, delta*owner.lerp_climb_speed)
-		if owner.is_on_floor() and input.dir.y>0:
-			goto("idle")
 		var a = owner.anim as AnimationPlayer
 		a.playback_speed = input.dir.y if input.dir.y else abs(input.dir.x)
+		
+		owner.velocity = lerp(owner.velocity, input.dir*owner.climb_speed, delta*owner.lerp_climb_speed)
+		if owner.is_on_floor() and input.dir.y>0:
+			return goto("idle")
+			
 		
 		
 	
