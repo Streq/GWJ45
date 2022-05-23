@@ -220,6 +220,7 @@ prev_pipe={
 2d_physics/layer_7="hitbox"
 2d_physics/layer_8="pickup"
 2d_physics/layer_9="background_wall"
+2d_physics/layer_10="cursor"
 
 [physics]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://src/util/state_machine/state_machine.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/worker/bag.gd" type="Script" id=2]
@@ -26,6 +26,8 @@
 [ext_resource path="res://assets/audio/sfx/Colocar_tuberia.ogg" type="AudioStream" id=24]
 [ext_resource path="res://assets/audio/sfx/Girar_Tuberia.ogg" type="AudioStream" id=25]
 [ext_resource path="res://src/entities/worker/worker_sprite.gd" type="Script" id=26]
+[ext_resource path="res://src/HUD/cursor.tscn" type="PackedScene" id=27]
+[ext_resource path="res://src/HUD/cursor_range.tscn" type="PackedScene" id=28]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7.5, 11 )
@@ -270,43 +272,45 @@ climb_speed = 50.0
 position = Vector2( 0, -3 )
 shape = SubResource( 1 )
 
-[node name="drill" type="Area2D" parent="."]
+[node name="cursor_pivot" type="Node2D" parent="."]
+
+[node name="drill" type="Area2D" parent="cursor_pivot"]
 visible = false
 collision_layer = 0
 collision_mask = 16
 script = ExtResource( 3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="drill"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cursor_pivot/drill"]
 position = Vector2( 4, 0 )
 shape = SubResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="drill"]
+[node name="Sprite" type="Sprite" parent="cursor_pivot/drill"]
 texture = ExtResource( 6 )
 hframes = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="drill"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="cursor_pivot/drill"]
 anims/RESET = SubResource( 18 )
 anims/drill = SubResource( 19 )
 
-[node name="ground_sound" type="AudioStreamPlayer2D" parent="drill"]
+[node name="ground_sound" type="AudioStreamPlayer2D" parent="cursor_pivot/drill"]
 stream = ExtResource( 22 )
 
-[node name="rock_sound" type="AudioStreamPlayer2D" parent="drill"]
+[node name="rock_sound" type="AudioStreamPlayer2D" parent="cursor_pivot/drill"]
 stream = ExtResource( 23 )
 
-[node name="bag" type="Area2D" parent="."]
+[node name="bag" type="Area2D" parent="cursor_pivot"]
 position = Vector2( 0, -5 )
 collision_layer = 0
 collision_mask = 128
 script = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bag"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cursor_pivot/bag"]
 shape = SubResource( 3 )
 
-[node name="put_sound" type="AudioStreamPlayer2D" parent="bag"]
+[node name="put_sound" type="AudioStreamPlayer2D" parent="cursor_pivot/bag"]
 stream = ExtResource( 24 )
 
-[node name="rotate_sound" type="AudioStreamPlayer2D" parent="bag"]
+[node name="rotate_sound" type="AudioStreamPlayer2D" parent="cursor_pivot/bag"]
 stream = ExtResource( 25 )
 
 [node name="ladder_detector" type="Area2D" parent="."]
@@ -397,5 +401,9 @@ stream = ExtResource( 18 )
 [node name="hurt" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 21 )
 
-[connection signal="body_entered" from="drill" to="drill" method="_on_drill_body_entered"]
+[node name="cursor" parent="." instance=ExtResource( 27 )]
+
+[node name="cursor_range" parent="." instance=ExtResource( 28 )]
+
+[connection signal="body_entered" from="cursor_pivot/drill" to="cursor_pivot/drill" method="_on_drill_body_entered"]
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]

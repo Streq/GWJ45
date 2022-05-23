@@ -2,7 +2,7 @@ extends Label
 
 
 func _ready():
-	var bag = Group.get_one("player").get_node("bag")
+	var bag = Group.get_one("player").bag
 	
 	bag.connect("total_changed", self, "_on_total_changed")
 	bag.connect("hit_limit", self, "_on_hit_limit")

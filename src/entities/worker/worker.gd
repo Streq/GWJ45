@@ -12,8 +12,8 @@ export var lerp_climb_speed := 10.0
 export var hitpoints := 3 setget set_hitpoints
 export var max_hitpoints := 3 setget set_max_hitpoints
 
-onready var drill := $drill
-onready var bag := $bag
+onready var drill := $cursor_pivot/drill
+onready var bag := $cursor_pivot/bag
 onready var ladder_detector := $ladder_detector
 onready var state_machine := $state_machine
 onready var pivot = $pivot
