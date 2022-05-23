@@ -57,7 +57,7 @@ func _physics_process(delta):
 	drill.position = dir*10.0
 	drill.rotation = dir.angle()
 	
-	if input.is_action_just_pressed("restart"):
+	if input.is_action_just_released("restart"):
 		get_tree().reload_current_scene()
 		Global.worker_index+=1
 

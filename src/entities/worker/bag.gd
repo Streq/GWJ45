@@ -45,12 +45,19 @@ func set_pipe_transform(val):
 
 func _physics_process(delta):
 	var input = owner.input
-	if input.is_action_just_pressed("rotate"):
+	if input.is_action_just_released("rotate"):
 		self.pipe_transform = pipe_transform.rotated(PI/2.0)
+		rotate_sound.play()
+	if input.is_action_just_released("rotate_down"):
+		self.pipe_transform = pipe_transform.rotated(-PI/2.0)
 		rotate_sound.play()
 	if input.is_action_just_pressed("next_pipe"):
 		var items = pipes.keys()
 		var index = (items.find(current) + 1)%items.size()
+		self.current = items[index]
+	if input.is_action_just_pressed("prev_pipe"):
+		var items = pipes.keys()
+		var index = (items.find(current) - 1)%items.size()
 		self.current = items[index]
 	if input.is_action_just_pressed("bag") and enabled:
 		var areas = get_overlapping_areas()
@@ -70,6 +77,8 @@ func _physics_process(delta):
 		current_cursor.global_position = cursor_pos
 		if pipes[current] <= 0: 
 			current_cursor.modulate.a = 0.5
+		else:
+			current_cursor.modulate.a = 1.0
 	current_cursor.visible = putting
 
 func _process(delta):

@@ -14,4 +14,7 @@ func _physics_process(delta):
 	for action in input.buttons:
 		var button = input.buttons[action]
 		button.pressed = Input.is_action_pressed(action)
+		#for mouse wheel inputs
+		if Input.is_action_just_released(action):
+			button.just_updated = true
 	input.dir = InputUtils.get_input_dir()

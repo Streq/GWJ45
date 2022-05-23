@@ -8,7 +8,9 @@ var buttons := {
 	bag = ButtonState.new(),
 	put = ButtonState.new(),
 	next_pipe = ButtonState.new(),
+	prev_pipe = ButtonState.new(),
 	rotate = ButtonState.new(),
+	rotate_down = ButtonState.new(),
 	restart = ButtonState.new()
 }
 

@@ -168,6 +168,7 @@ remember: if you get stuck, restart with R
 "
 
 [node name="win_text" type="Label" parent="CanvasLayer"]
+visible = false
 margin_left = 64.0
 margin_top = 376.0
 margin_right = 252.0
@@ -180,4 +181,3 @@ align = 1
 
 [connection signal="goal" from="goal_pipe" to="win_timer" method="_on_goal"]
 [connection signal="goal" from="goal_pipe" to="CanvasLayer/win_text" method="set_visible" binds= [ true ]]
-[connection signal="timeout" from="win_timer" to="win_timer" method="_win"]

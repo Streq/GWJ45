@@ -20,6 +20,8 @@ stream = ExtResource( 1 )
 
 [node name="gameplay" type="AudioStreamPlayer" parent="tracks"]
 stream = ExtResource( 2 )
+volume_db = -20.0
 
 [node name="tutorial" type="AudioStreamPlayer" parent="tracks"]
 stream = ExtResource( 4 )
+volume_db = -20.0

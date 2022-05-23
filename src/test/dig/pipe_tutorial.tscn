@@ -115,25 +115,30 @@ that's it, that's the game"
 align = 1
 
 [node name="Label" type="Label" parent="CanvasLayer"]
-margin_left = 64.0
+margin_left = 112.0
 margin_top = 312.0
-margin_right = 268.0
-margin_bottom = 341.0
+margin_right = 316.0
+margin_bottom = 373.0
 custom_fonts/font = ExtResource( 15 )
-text = "z- jump             x- drill   
-c- pick up          v- put down (hold to visualize)
-a- alternate pipe   s- rotate pipe  
-r- restart          arrows- move"
+text = "wasd- move
+space- jump
+shift- drill   
+left click- pick up          
+right click- put down (hold to visualize)
+e,q- alternate pipe
+mousewheel- rotate pipe  
+r- restart         "
 
 [node name="Label3" type="Label" parent="CanvasLayer"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -32.0
-margin_top = 160.0
-margin_right = 36.0
-margin_bottom = 165.0
+margin_left = -48.0
+margin_top = 184.0
+margin_right = 20.0
+margin_bottom = 189.0
 custom_fonts/font = ExtResource( 15 )
 text = "ok let's go!!!!!!"
 
