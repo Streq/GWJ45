@@ -3,8 +3,8 @@ extends Node2D
 
 var tracks = {}
 
-onready var music_player : AudioCrossfadePlayer = $player
-onready var ambience_player : AudioCrossfadePlayer = $player2
+onready var music_player : AudioCrossfadePlayer = $music_player
+onready var ambience_player : AudioCrossfadePlayer = $ambience_player
 
 var ambience_track := ""
 var music_track := ""

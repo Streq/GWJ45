@@ -1,10 +1,16 @@
 extends Node
 class_name AudioCrossfadePlayer
+
+export var bus: String = "Master"
+
 # References to the nodes in our scene
 onready var _anim_player := $AnimationPlayer
 onready var _track_1 := $Track1
 onready var _track_2 := $Track2
 
+func _ready():
+	_track_1.bus = bus
+	_track_2.bus = bus
 
 # crossfades to a new audio stream
 func crossfade_to(audio_stream: AudioStream) -> void:

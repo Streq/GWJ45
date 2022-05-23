@@ -294,9 +294,11 @@ anims/drill = SubResource( 19 )
 
 [node name="ground_sound" type="AudioStreamPlayer2D" parent="cursor_pivot/drill"]
 stream = ExtResource( 22 )
+bus = "sfx"
 
 [node name="rock_sound" type="AudioStreamPlayer2D" parent="cursor_pivot/drill"]
 stream = ExtResource( 23 )
+bus = "sfx"
 
 [node name="bag" type="Area2D" parent="cursor_pivot"]
 position = Vector2( 0, -5 )
@@ -309,9 +311,11 @@ shape = SubResource( 3 )
 
 [node name="put_sound" type="AudioStreamPlayer2D" parent="cursor_pivot/bag"]
 stream = ExtResource( 24 )
+bus = "sfx"
 
 [node name="rotate_sound" type="AudioStreamPlayer2D" parent="cursor_pivot/bag"]
 stream = ExtResource( 25 )
+bus = "sfx"
 
 [node name="ladder_detector" type="Area2D" parent="."]
 position = Vector2( 0, -3 )
@@ -391,15 +395,19 @@ script = ExtResource( 14 )
 
 [node name="audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 20 )
+bus = "sfx"
 
 [node name="jump" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 19 )
+bus = "sfx"
 
 [node name="land" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 18 )
+bus = "sfx"
 
 [node name="hurt" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 21 )
+bus = "sfx"
 
 [node name="cursor" parent="." instance=ExtResource( 27 )]
 

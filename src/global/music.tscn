@@ -9,19 +9,24 @@
 [node name="Node2D3" type="Node2D"]
 script = ExtResource( 3 )
 
-[node name="player" parent="." instance=ExtResource( 7 )]
+[node name="music_player" parent="." instance=ExtResource( 7 )]
+bus = "music"
 
-[node name="player2" parent="." instance=ExtResource( 7 )]
+[node name="ambience_player" parent="." instance=ExtResource( 7 )]
+bus = "ambience"
 
 [node name="tracks" type="Node" parent="."]
 
 [node name="ambience" type="AudioStreamPlayer" parent="tracks"]
 stream = ExtResource( 1 )
+bus = "music"
 
 [node name="gameplay" type="AudioStreamPlayer" parent="tracks"]
 stream = ExtResource( 2 )
 volume_db = -20.0
+bus = "music"
 
 [node name="tutorial" type="AudioStreamPlayer" parent="tracks"]
 stream = ExtResource( 4 )
 volume_db = -20.0
+bus = "sfx"
