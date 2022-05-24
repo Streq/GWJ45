@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Inventario_Lleno_03.ogg-eab11a690c651e4c6a66601515ad0d19.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/sfx/Inventario_Lleno_03.ogg"
+dest_files=[ "res://.import/Inventario_Lleno_03.ogg-eab11a690c651e4c6a66601515ad0d19.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

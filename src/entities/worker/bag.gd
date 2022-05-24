@@ -11,6 +11,7 @@ export var limit := 5
 onready var shape : CollisionShape2D = $CollisionShape2D
 onready var put_sound = $put_sound
 onready var rotate_sound = $rotate_sound
+onready var full_bag_sound = $full_bag_sound
 
 var enabled = true
 var pipes = {"line_pipe":0,"angle_pipe":0,"ladder":0}
@@ -45,29 +46,35 @@ func set_pipe_transform(val):
 
 func _physics_process(delta):
 	var input = owner.input
+	
 	if input.is_action_just_released("rotate"):
 		self.pipe_transform = pipe_transform.rotated(PI/2.0)
 		rotate_sound.play()
+	
 	if input.is_action_just_released("rotate_down"):
 		self.pipe_transform = pipe_transform.rotated(-PI/2.0)
 		rotate_sound.play()
+	
 	if input.is_action_just_pressed("next_pipe"):
 		var items = pipes.keys()
 		var index = (items.find(current) + 1)%items.size()
 		self.current = items[index]
+	
 	if input.is_action_just_pressed("prev_pipe"):
 		var items = pipes.keys()
 		var index = (items.find(current) - 1)%items.size()
 		self.current = items[index]
-	if input.is_action_just_pressed("bag") and enabled \
-	and owner.cursor.is_within_range() \
-	and owner.cursor.available_action == "bag":
-		var areas = get_overlapping_areas()
-		if areas.size():
-			_on_bag_area_entered(areas[-1])
-		else: 
-			putting = true
 	
+	if (input.is_action_just_pressed("bag") 
+		and enabled
+		and owner.cursor.is_within_range()
+		and owner.cursor.available_action == "bag"):
+			var areas = get_overlapping_areas()
+			if areas.size():
+				_on_bag_area_entered(areas[-1])
+			else: 
+				putting = true
+		
 	
 	
 	var current_cursor = cursors[current]
@@ -89,19 +96,18 @@ func _process(delta):
 	var current_cursor = cursors[current]
 	if putting and input.is_action_just_released("bag") and owner.cursor.available_action == "bag":
 		putting = false
-		if enabled \
-		and pipes.has(current) \
-		and pipes[current] \
-		and current_cursor.can_put \
-		and owner.cursor.is_within_range():
-			var pipe = Factory.items[current].scene.instance()
-			pipe.transform = pipe_transform
-			pipes[current] -= 1
-			emit_signal("picked_up", current, pipes[current])
-			owner.owner.add_child(pipe)
-			pipe.global_position = current_cursor.global_position
-			emit_signal("total_changed", get_count(), limit)
-			put_sound.play()
+		if (enabled 
+			and pipes.has(current) 
+			and pipes[current] 
+			and current_cursor.can_put
+			and owner.cursor.is_within_range()):
+				var pipe = Factory.items[current].scene.instance()
+				pipe.transform = pipe_transform
+				pipes[current] -= 1
+				_on_picked_up(current, pipes[current])
+				owner.owner.add_child(pipe)
+				pipe.global_position = current_cursor.global_position
+				emit_signal("total_changed", get_count(), limit)
 func _on_bag_area_entered(area: Area2D):
 	var item = area.item_name
 	if get_count() < limit:
@@ -109,10 +115,10 @@ func _on_bag_area_entered(area: Area2D):
 			pipes[item] = 0
 		pipes[item] += 1
 		area.owner.queue_free()
-		emit_signal("picked_up", item, pipes[item])
+		_on_picked_up(item, pipes[item])
 		emit_signal("total_changed", get_count(), limit)
 	else:
-		emit_signal("hit_limit")
+		_on_hit_limit()
 
 func set_current(val):
 	current = val
@@ -125,3 +131,10 @@ func get_count():
 		ret += value
 	return ret
 
+func _on_picked_up(item_name, current_amount):
+	emit_signal("picked_up", item_name, current_amount)
+	put_sound.play()
+
+func _on_hit_limit():
+	emit_signal("hit_limit")
+	full_bag_sound.play()

@@ -159,7 +159,6 @@ script = ExtResource( 13 )
 layer = 3
 
 [node name="win_text" type="Label" parent="CanvasLayer"]
-visible = false
 margin_left = 72.0
 margin_top = 104.0
 margin_right = 260.0
@@ -176,3 +175,4 @@ one_shot = true
 script = ExtResource( 16 )
 
 [connection signal="goal" from="goal_pipe" to="CanvasLayer/win_text" method="set_visible" binds= [ true ]]
+[connection signal="goal" from="goal_pipe" to="win_timer" method="_on_goal"]

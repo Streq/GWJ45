@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://src/util/state_machine/state_machine.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/worker/bag.gd" type="Script" id=2]
@@ -28,6 +28,7 @@
 [ext_resource path="res://src/entities/worker/worker_sprite.gd" type="Script" id=26]
 [ext_resource path="res://src/HUD/cursor.tscn" type="PackedScene" id=27]
 [ext_resource path="res://src/HUD/cursor_range.tscn" type="PackedScene" id=28]
+[ext_resource path="res://assets/audio/sfx/LFO_Negativo01_04.ogg" type="AudioStream" id=29]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7.5, 11 )
@@ -383,6 +384,10 @@ bus = "sfx"
 
 [node name="rotate_sound" type="AudioStreamPlayer2D" parent="cursor/bag"]
 stream = ExtResource( 25 )
+bus = "sfx"
+
+[node name="full_bag_sound" type="AudioStreamPlayer2D" parent="cursor/bag"]
+stream = ExtResource( 29 )
 bus = "sfx"
 
 [node name="drill" type="Area2D" parent="cursor"]

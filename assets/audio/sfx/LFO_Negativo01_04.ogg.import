@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/LFO_Negativo01_04.ogg-dcf708419b399b05905b88540e17acc9.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/sfx/LFO_Negativo01_04.ogg"
+dest_files=[ "res://.import/LFO_Negativo01_04.ogg-dcf708419b399b05905b88540e17acc9.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
