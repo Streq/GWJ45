@@ -196,12 +196,17 @@ jobs:
         uses: juliangruber/read-file-action@v1
         with:
           path: ./version/VERSION
+      - name: Get release
+        id: get_release
+        uses: bruceadams/get-release@v1.2.3
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
       - name: Send Discord Success Message
         if: ${{ env.IS_MAIN && env.DID_PREV_JOBS_SUCCEED == 'true' }}
         run: |
           curl --location --request POST $DISCORD_WEBHOOK \
             --header 'Content-Type: application/json' \
-            --data-raw '{"content": "'"$PROJECT_NAME"' '"$VERSION"' has successfully released and deployed!"}'
+            --data-raw '{"content": "'"$PROJECT_NAME"' '"$VERSION"' has successfully released and deployed, check it out at '"${{ steps.get_release.outputs.html_url }}!"'"}'
         env:
           VERSION: ${{ steps.version_number.outputs.content }}
       - name: Send Discord Failure Message
