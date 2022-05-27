@@ -146,6 +146,7 @@ jobs:
           files: exports/*
   PushExportsToItch:
     needs: BuildAndPublish
+    #if: ${{ contains(github.ref, 'main') }}
     if: ${{ false }}
     runs-on: ubuntu-latest
     steps:
@@ -177,10 +178,12 @@ jobs:
         if: ${{ env.RELEASE_HTML5 == 'true' }}
         run: ./butler push ./exports/${ITCH_PROJECT_NAME}_html_${{ steps.version_number.outputs.content }}.zip $ITCH_USERNAME/$ITCH_PROJECT_NAME:html --userversion-file ./version/VERSION
   AlertPipelineResult:
-    needs: [BuildAndPublish, CreateNewGithubRelease, PushExportsToItch]
+    #needs: [BuildAndPublish, CreateNewGithubRelease, PushExportsToItch]
+    needs: [BuildAndPublish, CreateNewGithubRelease]
     if: ${{ always() }}
     env:
-      DID_PREV_JOBS_SUCCEED: ${{ contains(needs.BuildAndPublish.result, 'success' ) && contains(needs.CreateNewGithubRelease.result, 'success' ) }}# && contains(needs.PushExportsToItch.result, 'success' ) }}
+      DID_PREV_JOBS_SUCCEED: ${{ contains(needs.BuildAndPublish.result, 'success' ) && contains(needs.CreateNewGithubRelease.result, 'success' ) }}
+      #DID_PREV_JOBS_SUCCEED: ${{ contains(needs.BuildAndPublish.result, 'success' ) && contains(needs.CreateNewGithubRelease.result, 'success' ) }} && contains(needs.PushExportsToItch.result, 'success' ) }}
     runs-on: ubuntu-latest
     steps:
       - name: Download Version
