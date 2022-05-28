@@ -184,7 +184,7 @@ jobs:
     if: ${{ contains(github.ref, 'main') }}
     runs-on: ubuntu-latest
     steps:
-      - name: Downlaod HTML5 Export
+      - name: Download HTML5 Export
         if: ${{ env.UPLOAD_TO_GH_PAGES == 'true' }}
         uses: actions/download-artifact@v2
         with:
@@ -203,22 +203,18 @@ jobs:
       #DID_PREV_JOBS_SUCCEED: ${{ contains(needs.BuildAndPublish.result, 'success' ) && contains(needs.CreateNewGithubRelease.result, 'success' ) }}
       DID_PREV_JOBS_SUCCEED: ${{ contains(needs.BuildAndPublish.result, 'success' ) && contains(needs.CreateNewGithubRelease.result, 'success' ) && contains(needs.PushExportsToItch.result, 'success' ) }}
       VERSION: ${{ needs.BuildAndPublish.outputs.version }}
+      MESSAGE: ${{ github.event.head_commit.message }}
     runs-on: ubuntu-latest
     steps:
       - name: Send Discord Success Message
         if: ${{ env.IS_MAIN && env.DID_PREV_JOBS_SUCCEED == 'true' }}
         run: |
           sudo apt install -y jq
-          read -d '' MESSAGE <<- EOM
-          '{"content": "'"$PROJECT_NAME"' v'"$VERSION"' has successfully released and deployed!
-          '"${{ needs.CreateNewGithubRelease.outputs.url }}"'
-          '"https://${ITCH_USERNAME}.itch.io/${ITCH_PROJECT_NAME}"'
-          '"${{ github.event.head_commit.message }}"'"}' 
-          EOM
-          MESSAGE= echo -n "$MESSAGE" | jq -Rsa
+          #escape line breaks
+          MESSAGE="$(echo -n "$MESSAGE" | jq -Rsa)""
           curl --location --request POST $DISCORD_WEBHOOK \
             --header 'Content-Type: application/json' \
-            --data-raw "$MESSAGE"
+            --data-raw '{"content": "'"$PROJECT_NAME"' v'"$VERSION"' has successfully released and deployed!\n'"${{ needs.CreateNewGithubRelease.outputs.url }}"'\n'"https://${ITCH_USERNAME}.itch.io/${ITCH_PROJECT_NAME}"'\n'"$MESSAGE"'"}'
       - name: Send Discord Failure Message
         if: ${{ env.IS_MAIN && env.DID_PREV_JOBS_SUCCEED != 'true' }}
         run: |
