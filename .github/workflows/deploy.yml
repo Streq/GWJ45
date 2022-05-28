@@ -207,8 +207,6 @@ jobs:
       VERSION: ${{ needs.BuildAndPublish.outputs.version }}
       COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
       RELEASE_URL: ${{ needs.CreateNewGithubRelease.outputs.url }}
-      ITCH_URL: ""
-      GH_PAGES_LINK: ""
     runs-on: ubuntu-latest
     steps:
       - name: Set Itch URL
@@ -228,7 +226,7 @@ jobs:
           sudo apt install -y jq
           #escape line breaks
           ESCAPED_COMMIT_MESSAGE="$(echo -n "$COMMIT_MESSAGE" | jq -Rsa)"
-          MESSAGE='{"content": "'"$PROJECT_NAME"' v'"$VERSION"' has successfully [released]('"${RELEASE_URL}"') and [deployed]('"${GH_PAGES_LINK}"')!\nCommit message:'"${ESCAPED_COMMIT_MESSAGE:1:-1}${ITCH_LINK}"'"}'
+          MESSAGE='{"content": "'"$PROJECT_NAME"' v'"$VERSION"' has successfully [released]('"${RELEASE_URL}"') and [deployed]('"${GH_PAGES_LINK}"')!\nCommit message: '"${ESCAPED_COMMIT_MESSAGE:1:-1}${ITCH_LINK}"'"}'
           echo "attempting to send message with body:"
           echo "$MESSAGE"
           curl --location --request POST $DISCORD_WEBHOOK \
