@@ -194,7 +194,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./gh.pages
+          publish_dir: ./gh-pages
   AlertPipelineResult:
     needs: [BuildAndPublish, CreateNewGithubRelease, PushExportsToItch]
     #needs: [BuildAndPublish, CreateNewGithubRelease]
@@ -210,7 +210,7 @@ jobs:
         run: |
           curl --location --request POST $DISCORD_WEBHOOK \
             --header 'Content-Type: application/json' \
-            --data-raw '{"content": "'"$PROJECT_NAME"' v'"$VERSION"' has successfully released and deployed!\\n'"${{ needs.CreateNewGithubRelease.outputs.url }}"'\\n'"https://${ITCH_USERNAME}.itch.io/${ITCH_PROJECT_NAME}"'\\n '"${{ github.event.head_commit.message }}"'"}'
+            --data-raw '{"content": "'"$PROJECT_NAME"' v'"$VERSION"' has successfully released and deployed!\\\\n'"${{ needs.CreateNewGithubRelease.outputs.url }}"'\\\\n'"https://${ITCH_USERNAME}.itch.io/${ITCH_PROJECT_NAME}"'\\\\n '"${{ github.event.head_commit.message }}"'"}'
       - name: Send Discord Failure Message
         if: ${{ env.IS_MAIN && env.DID_PREV_JOBS_SUCCEED != 'true' }}
         run: |
