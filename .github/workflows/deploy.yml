@@ -208,9 +208,17 @@ jobs:
       - name: Send Discord Success Message
         if: ${{ env.IS_MAIN && env.DID_PREV_JOBS_SUCCEED == 'true' }}
         run: |
+          sudo apt install -y jq
+          read -d '' MESSAGE <<- EOM
+          '{"content": "'"$PROJECT_NAME"' v'"$VERSION"' has successfully released and deployed!
+          '"${{ needs.CreateNewGithubRelease.outputs.url }}"'
+          '"https://${ITCH_USERNAME}.itch.io/${ITCH_PROJECT_NAME}"'
+          '"${{ github.event.head_commit.message }}"'"}' 
+          EOM
+          MESSAGE= echo -n "$MESSAGE" | jq -Rsa
           curl --location --request POST $DISCORD_WEBHOOK \
             --header 'Content-Type: application/json' \
-            --data-raw '{"content": "'"$PROJECT_NAME"' v'"$VERSION"' has successfully released and deployed!\\\\n'"${{ needs.CreateNewGithubRelease.outputs.url }}"'\\\\n'"https://${ITCH_USERNAME}.itch.io/${ITCH_PROJECT_NAME}"'\\\\n '"${{ github.event.head_commit.message }}"'"}'
+            --data-raw "$MESSAGE"
       - name: Send Discord Failure Message
         if: ${{ env.IS_MAIN && env.DID_PREV_JOBS_SUCCEED != 'true' }}
         run: |
