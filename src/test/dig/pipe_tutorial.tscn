@@ -123,9 +123,9 @@ custom_fonts/font = ExtResource( 15 )
 text = "wasd- move
 space- jump
 left click- pick up
-            put down(hold to visualize) 
+            put down (hold to visualize) 
             drill
-e,q- alternate pipe
+right click (or q and e)- alternate pipe
 mousewheel- rotate pipe  
 r- restart         "
 
