@@ -203,7 +203,8 @@ jobs:
       #DID_PREV_JOBS_SUCCEED: ${{ contains(needs.BuildAndPublish.result, 'success' ) && contains(needs.CreateNewGithubRelease.result, 'success' ) }}
       DID_PREV_JOBS_SUCCEED: ${{ contains(needs.BuildAndPublish.result, 'success' ) && contains(needs.CreateNewGithubRelease.result, 'success' ) && contains(needs.PushExportsToItch.result, 'success' ) }}
       VERSION: ${{ needs.BuildAndPublish.outputs.version }}
-      MESSAGE: ${{ github.event.head_commit.message }}
+      COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+      RELEASE_URL: ${{ needs.CreateNewGithubRelease.outputs.url }}
     runs-on: ubuntu-latest
     steps:
       - name: Send Discord Success Message
@@ -211,10 +212,15 @@ jobs:
         run: |
           sudo apt install -y jq
           #escape line breaks
-          MESSAGE="$(echo -n "$MESSAGE" | jq -Rsa)"
+          ESCAPED_COMMIT_MESSAGE="$(echo -n "$COMMIT_MESSAGE" | jq -Rsa)"
+          ITCH_URL="https://${ITCH_USERNAME}.itch.io/${ITCH_PROJECT_NAME}"
+          MESSAGE='{"content": "'"$PROJECT_NAME"' v'"$VERSION"' has successfully released and deployed!\n'"$RELEASE_URL"'\n'"$ITCH_URL"'\n'"$ESCAPED_COMMIT_MESSAGE"'"}'
+          echo "attempting to send message with body:"
+          echo "$MESSAGE"
           curl --location --request POST $DISCORD_WEBHOOK \
             --header 'Content-Type: application/json' \
-            --data-raw '{"content": "'"$PROJECT_NAME"' v'"$VERSION"' has successfully released and deployed!\n'"${{ needs.CreateNewGithubRelease.outputs.url }}"'\n'"https://${ITCH_USERNAME}.itch.io/${ITCH_PROJECT_NAME}"'\n'"$MESSAGE"'"}'
+            --data-raw "$MESSAGE"
+
       - name: Send Discord Failure Message
         if: ${{ env.IS_MAIN && env.DID_PREV_JOBS_SUCCEED != 'true' }}
         run: |
