@@ -213,13 +213,14 @@ jobs:
         if: ${{ env.PUSH_TO_ITCH == 'true' }}
         run: |
           ITCH_LINK="\n[Play it on Itch!](https://${ITCH_USERNAME}.itch.io/${ITCH_PROJECT_NAME})\n"
+          echo "$ITCH_LINK"
       - name: Set Itch URL
         if: ${{ env.UPLOAD_TO_GH_PAGES == 'true' }}
         run: |
           #transform "owner/repo" -> "repo"
           REPO_NAME=$(echo "$GITHUB_REPOSITORY_NAME" | cut -d/ -f2)
           GH_PAGES_LINK="https://${GITHUB_REPOSITORY_OWNER}.github.io/${REPO_NAME}"
-      
+          echo "$GH_PAGES_LINK"
       - name: Send Discord Success Message
         if: ${{ env.IS_MAIN && env.DID_PREV_JOBS_SUCCEED == 'true' }}
         run: |
