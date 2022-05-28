@@ -223,7 +223,7 @@ jobs:
           REPO_NAME=$(echo "$GITHUB_REPOSITORY_NAME" | cut -d/ -f2)
           GH_PAGES_LINK="https://${GITHUB_REPOSITORY_OWNER}.github.io/${REPO_NAME}"
           echo "$GITHUB_REPOSITORY_NAME"
-          echo "$(echo "$GITHUB_REPOSITORY_NAME" | cut -d/ -f2)""
+          echo "$(echo "$GITHUB_REPOSITORY_NAME" | cut -d/ -f2)"
           echo "$GH_PAGES_LINK"
           echo "::set-output name=url::$GH_PAGES_LINK"
       - name: Send Discord Success Message
