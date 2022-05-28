@@ -226,8 +226,8 @@ jobs:
       - name: Send Discord Success Message
         if: ${{ env.IS_MAIN && env.DID_PREV_JOBS_SUCCEED == 'true' }}
         env:
-          GH_PAGES_LINK: ${{ ghp.outputs.url }}
-          ITCH_LINK: ${{ itch.outputs.url }}
+          GH_PAGES_LINK: ${{ steps.ghp.outputs.url }}
+          ITCH_LINK: ${{ steps.itch.outputs.url }}
         run: |
           sudo apt install -y jq
           #escape line breaks
