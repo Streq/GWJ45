@@ -17,6 +17,8 @@ env:
   RELEASE_WINDOWS: true
   RELEASE_MAC: true
   RELEASE_HTML5: true
+  PUSH_TO_ITCH: true
+  UPLOAD_TO_GH_PAGES: true
 
 jobs:
   BuildAndPublish:
@@ -81,10 +83,20 @@ jobs:
           mkdir ./exports/mac
           ./godot --path ./project.godot --export "Mac OSX" ./exports/mac/$PROJECT_NAME.zip
       - name: Export HTML5 Port
-        if: ${{ env.RELEASE_HTML5 == 'true' }}
+        if: ${{ env.RELEASE_HTML5 == 'true' || env.UPLOAD_TO_GH_PAGES == 'true' }}
         run: |
           mkdir ./exports/html
           ./godot --path ./project.godot --export "HTML5" ./exports/html/index.html
+      - name: Publish HTML5 Artifact for Github Pages
+        uses: actions/upload-artifact@v2
+        if: ${{ env.UPLOAD_TO_GH_PAGES == 'true' }}
+        with:
+          name: gh-pages
+          path: exports/html
+      - name: Delete HTML5 export if it's not to be uploaded
+        if: ${{ env.RELEASE_HTML5 == 'false' || env.UPLOAD_TO_GH_PAGES == 'true' }}
+        run: |
+          rm -rf .exports/html
       - name: Zip Exports
         run: |
           cd exports
@@ -166,6 +178,20 @@ jobs:
       - name: Push HTML5 Export To Itch
         if: ${{ env.RELEASE_HTML5 == 'true' }}
         run: ./butler push ./exports/${ITCH_PROJECT_NAME}_html_${VERSION}.zip $ITCH_USERNAME/$ITCH_PROJECT_NAME:html --userversion $VERSION
+  UploadToGithubPages:
+    needs: BuildAndPublish
+    if: ${{ contains(github.ref, 'main') && env.UPLOAD_TO_GH_PAGES }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Downlaod HTML5 Export
+        uses: actions/download-artifact@v2
+        with:
+          name: gh-pages
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./gh.pages
   AlertPipelineResult:
     needs: [BuildAndPublish, CreateNewGithubRelease, PushExportsToItch]
     #needs: [BuildAndPublish, CreateNewGithubRelease]
@@ -181,7 +207,7 @@ jobs:
         run: |
           curl --location --request POST $DISCORD_WEBHOOK \
             --header 'Content-Type: application/json' \
-            --data-raw '{"content": "'"$PROJECT_NAME"' '"$VERSION"' has successfully released and deployed! check it out at '"${{ needs.CreateNewGithubRelease.outputs.url }}"' and '"https://${ITCH_USERNAME}.itch.io/${ITCH_PROJECT_NAME}"'"}'
+            --data-raw '{"content": "'"$PROJECT_NAME"' '"$VERSION"' has successfully released and deployed!\n'"${{ needs.CreateNewGithubRelease.outputs.url }}"'\n'"https://${ITCH_USERNAME}.itch.io/${ITCH_PROJECT_NAME}"'\n '"${{ github.event.head_commit.message }}"'"}'
       - name: Send Discord Failure Message
         if: ${{ env.IS_MAIN && env.DID_PREV_JOBS_SUCCEED != 'true' }}
         run: |
