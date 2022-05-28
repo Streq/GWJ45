@@ -12,6 +12,7 @@ env:
   PROJECT_NAME: "Dead Cow Mining"
   ITCH_PROJECT_NAME: "dead-cow-mining"
   ITCH_USERNAME: "streq"
+  GITHUB_USERNAME: "streq"
   GODOT_VERSION: "3.4.4"
   RELEASE_LINUX: true
   RELEASE_WINDOWS: true
@@ -206,16 +207,28 @@ jobs:
       VERSION: ${{ needs.BuildAndPublish.outputs.version }}
       COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
       RELEASE_URL: ${{ needs.CreateNewGithubRelease.outputs.url }}
+      ITCH_URL: ""
+      GH_PAGES_LINK: ""
     runs-on: ubuntu-latest
     steps:
+      - name: Set Itch URL
+        if: ${{ env.PUSH_TO_ITCH == 'true' }}
+        run: |
+          ITCH_LINK="\n[Play it on Itch!](https://${ITCH_USERNAME}.itch.io/${ITCH_PROJECT_NAME})\n"
+      - name: Set Itch URL
+        if: ${{ env.UPLOAD_TO_GH_PAGES == 'true' }}
+        run: |
+          #transform "owner/repo" -> "repo"
+          REPO_NAME=$(echo "$GITHUB_REPOSITORY_NAME" | cut -d/ -f2)
+          GH_PAGES_LINK="https://${GITHUB_REPOSITORY_OWNER}.github.io/${REPO_NAME}"
+      
       - name: Send Discord Success Message
         if: ${{ env.IS_MAIN && env.DID_PREV_JOBS_SUCCEED == 'true' }}
         run: |
           sudo apt install -y jq
           #escape line breaks
           ESCAPED_COMMIT_MESSAGE="$(echo -n "$COMMIT_MESSAGE" | jq -Rsa)"
-          ITCH_URL="https://${ITCH_USERNAME}.itch.io/${ITCH_PROJECT_NAME}"
-          MESSAGE='{"content": "'"$PROJECT_NAME"' v'"$VERSION"' has successfully released and deployed!\n'"$RELEASE_URL"'\n'"$ITCH_URL"'\n'"${ESCAPED_COMMIT_MESSAGE:1:-1}"'"}'
+          MESSAGE='{"content": "'"$PROJECT_NAME"' v'"$VERSION"' has successfully [released]('"${RELEASE_URL}"') and [deployed]('"${GH_PAGES_LINK}"')!\nCommit message:'"${ESCAPED_COMMIT_MESSAGE:1:-1}${ITCH_LINK}"'"}'
           echo "attempting to send message with body:"
           echo "$MESSAGE"
           curl --location --request POST $DISCORD_WEBHOOK \
