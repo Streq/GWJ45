@@ -180,14 +180,16 @@ jobs:
         run: ./butler push ./exports/${ITCH_PROJECT_NAME}_html_${VERSION}.zip $ITCH_USERNAME/$ITCH_PROJECT_NAME:html --userversion $VERSION
   UploadToGithubPages:
     needs: BuildAndPublish
-    if: ${{ contains(github.ref, 'main') && env.UPLOAD_TO_GH_PAGES }}
+    if: ${{ contains(github.ref, 'main') }}
     runs-on: ubuntu-latest
     steps:
       - name: Downlaod HTML5 Export
+        if: ${{ env.UPLOAD_TO_GH_PAGES == 'true' }}
         uses: actions/download-artifact@v2
         with:
           name: gh-pages
       - name: Deploy
+        if: ${{ env.UPLOAD_TO_GH_PAGES == 'true' }}
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
