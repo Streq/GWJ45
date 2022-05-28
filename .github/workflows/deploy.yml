@@ -214,7 +214,7 @@ jobs:
           #escape line breaks
           ESCAPED_COMMIT_MESSAGE="$(echo -n "$COMMIT_MESSAGE" | jq -Rsa)"
           ITCH_URL="https://${ITCH_USERNAME}.itch.io/${ITCH_PROJECT_NAME}"
-          MESSAGE='{"content": "'"$PROJECT_NAME"' v'"$VERSION"' has successfully released and deployed!\n'"$RELEASE_URL"'\n'"$ITCH_URL"'\n'"$ESCAPED_COMMIT_MESSAGE"'"}'
+          MESSAGE='{"content": "'"$PROJECT_NAME"' v'"$VERSION"' has successfully released and deployed!\n'"$RELEASE_URL"'\n'"$ITCH_URL"'\n'"${ESCAPED_COMMIT_MESSAGE:1:-1}"'"}'
           echo "attempting to send message with body:"
           echo "$MESSAGE"
           curl --location --request POST $DISCORD_WEBHOOK \
