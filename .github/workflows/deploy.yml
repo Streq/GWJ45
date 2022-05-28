@@ -211,7 +211,7 @@ jobs:
         run: |
           sudo apt install -y jq
           #escape line breaks
-          MESSAGE="$(echo -n "$MESSAGE" | jq -Rsa)""
+          MESSAGE="$(echo -n "$MESSAGE" | jq -Rsa)"
           curl --location --request POST $DISCORD_WEBHOOK \
             --header 'Content-Type: application/json' \
             --data-raw '{"content": "'"$PROJECT_NAME"' v'"$VERSION"' has successfully released and deployed!\n'"${{ needs.CreateNewGithubRelease.outputs.url }}"'\n'"https://${ITCH_USERNAME}.itch.io/${ITCH_PROJECT_NAME}"'\n'"$MESSAGE"'"}'
