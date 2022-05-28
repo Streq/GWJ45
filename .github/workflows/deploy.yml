@@ -94,7 +94,7 @@ jobs:
           name: gh-pages
           path: exports/html
       - name: Delete HTML5 export if it's not to be uploaded
-        if: ${{ env.RELEASE_HTML5 == 'false' || env.UPLOAD_TO_GH_PAGES == 'true' }}
+        if: ${{ env.RELEASE_HTML5 == 'false' && env.UPLOAD_TO_GH_PAGES == 'true' }}
         run: |
           rm -rf .exports/html
       - name: Zip Exports
@@ -180,6 +180,7 @@ jobs:
         run: ./butler push ./exports/${ITCH_PROJECT_NAME}_html_${VERSION}.zip $ITCH_USERNAME/$ITCH_PROJECT_NAME:html --userversion $VERSION
   UploadToGithubPages:
     needs: BuildAndPublish
+    permissions: write-all
     if: ${{ contains(github.ref, 'main') }}
     runs-on: ubuntu-latest
     steps:
@@ -209,7 +210,7 @@ jobs:
         run: |
           curl --location --request POST $DISCORD_WEBHOOK \
             --header 'Content-Type: application/json' \
-            --data-raw '{"content": "'"$PROJECT_NAME"' '"$VERSION"' has successfully released and deployed!\n'"${{ needs.CreateNewGithubRelease.outputs.url }}"'\n'"https://${ITCH_USERNAME}.itch.io/${ITCH_PROJECT_NAME}"'\n '"${{ github.event.head_commit.message }}"'"}'
+            --data-raw '{"content": "'"$PROJECT_NAME"' v'"$VERSION"' has successfully released and deployed!\\n'"${{ needs.CreateNewGithubRelease.outputs.url }}"'\\n'"https://${ITCH_USERNAME}.itch.io/${ITCH_PROJECT_NAME}"'\\n '"${{ github.event.head_commit.message }}"'"}'
       - name: Send Discord Failure Message
         if: ${{ env.IS_MAIN && env.DID_PREV_JOBS_SUCCEED != 'true' }}
         run: |
