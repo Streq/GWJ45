@@ -159,6 +159,7 @@ script = ExtResource( 13 )
 layer = 3
 
 [node name="win_text" type="Label" parent="CanvasLayer"]
+visible = false
 margin_left = 72.0
 margin_top = 104.0
 margin_right = 260.0

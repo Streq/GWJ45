@@ -31,7 +31,7 @@
 [ext_resource path="res://assets/audio/sfx/LFO_Negativo01_04.ogg" type="AudioStream" id=29]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 7.5, 11 )
+extents = Vector2( 7.5, 7.5 )
 
 [sub_resource type="Animation" id=20]
 length = 0.001
@@ -270,13 +270,12 @@ script = ExtResource( 5 )
 climb_speed = 50.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -3 )
+position = Vector2( 0, 0.5 )
 shape = SubResource( 1 )
 
 [node name="cursor_pivot" type="Node2D" parent="."]
 
 [node name="ladder_detector" type="Area2D" parent="."]
-position = Vector2( 0, -3 )
 collision_layer = 0
 collision_mask = 8
 
@@ -284,7 +283,6 @@ collision_mask = 8
 shape = SubResource( 1 )
 
 [node name="hurtbox" type="Area2D" parent="."]
-position = Vector2( 0, -3 )
 collision_layer = 0
 collision_mask = 64
 
@@ -370,7 +368,6 @@ bus = "sfx"
 [node name="cursor" parent="." instance=ExtResource( 27 )]
 
 [node name="bag" type="Area2D" parent="cursor"]
-position = Vector2( 0, -5 )
 collision_layer = 0
 collision_mask = 128
 script = ExtResource( 2 )
