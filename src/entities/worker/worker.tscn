@@ -1,11 +1,10 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://src/util/state_machine/state_machine.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/worker/bag.gd" type="Script" id=2]
-[ext_resource path="res://src/entities/worker/drill.gd" type="Script" id=3]
+[ext_resource path="res://src/entities/worker/drill.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/texture/worker0.png" type="Texture" id=4]
 [ext_resource path="res://src/entities/worker/worker.gd" type="Script" id=5]
-[ext_resource path="res://assets/texture/drill.png" type="Texture" id=6]
 [ext_resource path="res://src/entities/worker/walk.gd" type="Script" id=7]
 [ext_resource path="res://src/entities/worker/hurt.gd" type="Script" id=8]
 [ext_resource path="res://src/entities/worker/idle.gd" type="Script" id=9]
@@ -21,8 +20,6 @@
 [ext_resource path="res://assets/audio/sfx/Jump.ogg" type="AudioStream" id=19]
 [ext_resource path="res://assets/audio/sfx/Stairs_Step.ogg" type="AudioStream" id=20]
 [ext_resource path="res://assets/audio/sfx/Land.ogg" type="AudioStream" id=21]
-[ext_resource path="res://assets/audio/sfx/Taladro_Avanza.ogg" type="AudioStream" id=22]
-[ext_resource path="res://assets/audio/sfx/Taladro_PiedraDura.ogg" type="AudioStream" id=23]
 [ext_resource path="res://assets/audio/sfx/Colocar_tuberia.ogg" type="AudioStream" id=24]
 [ext_resource path="res://assets/audio/sfx/Girar_Tuberia.ogg" type="AudioStream" id=25]
 [ext_resource path="res://src/entities/worker/worker_sprite.gd" type="Script" id=26]
@@ -229,44 +226,10 @@ tracks/1/keys = {
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 1, 1 )
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 2, 2 )
-
-[sub_resource type="Animation" id=18]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
-
-[sub_resource type="Animation" id=19]
-resource_name = "drill"
-length = 0.2
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
-}
-
 [node name="worker" type="KinematicBody2D" groups=["player"]]
 collision_layer = 0
 script = ExtResource( 5 )
+jump_speed = 85.0
 climb_speed = 50.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -387,31 +350,7 @@ bus = "sfx"
 stream = ExtResource( 29 )
 bus = "sfx"
 
-[node name="drill" type="Area2D" parent="cursor"]
-visible = false
-collision_layer = 0
-collision_mask = 16
-script = ExtResource( 3 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="cursor/drill"]
-position = Vector2( 4, 0 )
-shape = SubResource( 2 )
-
-[node name="Sprite" type="Sprite" parent="cursor/drill"]
-texture = ExtResource( 6 )
-hframes = 2
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="cursor/drill"]
-anims/RESET = SubResource( 18 )
-anims/drill = SubResource( 19 )
-
-[node name="ground_sound" type="AudioStreamPlayer2D" parent="cursor/drill"]
-stream = ExtResource( 22 )
-bus = "sfx"
-
-[node name="rock_sound" type="AudioStreamPlayer2D" parent="cursor/drill"]
-stream = ExtResource( 23 )
-bus = "sfx"
+[node name="drill" parent="cursor" instance=ExtResource( 3 )]
 
 [node name="cursor_range" parent="." instance=ExtResource( 28 )]
 

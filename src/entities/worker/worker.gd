@@ -81,8 +81,10 @@ func _on_hurtbox_area_entered(area):
 		dirx = pivot.scale.x
 	else:
 		pivot.scale.x = -dirx
-	
-	get_hurt(1, Vector2(dirx*100.0, -75.0))
+	var damage = 1
+	if "damage" in area:
+		damage = area.damage
+	get_hurt(damage, Vector2(dirx*100.0, -75.0))
 	
 	
 func get_hurt(damage, knockback):
