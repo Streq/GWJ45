@@ -17,7 +17,7 @@
 [ext_resource path="res://assets/font/BitmapFont.res" type="BitmapFont" id=15]
 [ext_resource path="res://src/terrain/win_timer.gd" type="Script" id=16]
 
-[node name="Node2D2" type="Node2D"]
+[node name="Node2D3" type="Node2D"]
 position = Vector2( 0, 128 )
 script = ExtResource( 10 )
 song = "gameplay"

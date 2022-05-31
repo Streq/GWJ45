@@ -13,14 +13,15 @@ func _ready():
 
 func _on_event_area_area_entered(area):
 	if !triggered:
-	
+		camera2.current = true
+		
 		triggered = true
 		gusano.step()
 		yield(gusano,"step")
 		yield(gusano,"step")
 		yield(gusano,"step")
-		
+		yield(gusano,"step")
 		camera2.set_physics_process(true)
 		camera2.set_physics_process_internal(true)
-		camera2.current = true
+		
 		

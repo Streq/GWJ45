@@ -1,5 +1,6 @@
 extends Node2D
 signal step()
+signal rumble(duration, frequency, amplitude)
 
 onready var tween = $Tween
 
@@ -25,6 +26,7 @@ func step():
 		tween.start()
 		yield(tween, "tween_all_completed")
 		emit_signal("step")
+		emit_signal("rumble", idle_time, 15, 2.0)
 		state = IDLE
 		yield(get_tree().create_timer(idle_time), "timeout")
 		
