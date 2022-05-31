@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://src/entities/gusano.gd" type="Script" id=1]
+[ext_resource path="res://assets/texture/gusano.png" type="Texture" id=2]
+[ext_resource path="res://assets/audio/sfx/Taladro_Avanza.ogg" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/sfx/Taladro_PiedraDura.ogg" type="AudioStream" id=4]
+[ext_resource path="res://src/entities/gusano/drill.gd" type="Script" id=5]
+[ext_resource path="res://assets/texture/gusano_front.png" type="Texture" id=6]
+[ext_resource path="res://assets/texture/tongue.png" type="Texture" id=7]
+[ext_resource path="res://src/entities/gusano/kill_zone.gd" type="Script" id=8]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 96, 8 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 48, 63 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 64 )
+
+[node name="gusano" type="Node2D"]
+script = ExtResource( 1 )
+tongue_distance = 144.0
+
+[node name="Sprite_back" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="tongue" type="Node2D" parent="."]
+position = Vector2( -40, 8 )
+
+[node name="Sprite_tongue" type="Sprite" parent="tongue"]
+texture = ExtResource( 7 )
+
+[node name="hitbox" type="Area2D" parent="tongue"]
+script = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tongue/hitbox"]
+shape = SubResource( 3 )
+
+[node name="Sprite_front" type="Sprite" parent="."]
+texture = ExtResource( 6 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
+
+[node name="ground_sound" type="AudioStreamPlayer2D" parent="Area2D" groups=["worm"]]
+stream = ExtResource( 3 )
+bus = "sfx"
+
+[node name="rock_sound" type="AudioStreamPlayer2D" parent="Area2D"]
+stream = ExtResource( 4 )
+volume_db = -80.0
+bus = "sfx"
+
+[node name="stop_detector" type="Area2D" parent="."]
+position = Vector2( 56, 0 )
+collision_layer = 0
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stop_detector"]
+shape = SubResource( 2 )
+
+[node name="kill_zone" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="kill_zone"]
+shape = SubResource( 1 )
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_drill_body_entered"]
+[connection signal="area_entered" from="stop_detector" to="." method="_on_stop_detector_area_entered"]

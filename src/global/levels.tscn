@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/global/packed_scene.gd" type="Script" id=1]
 [ext_resource path="res://src/global/levels.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/test/dig/dig_tutorial.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/test/dig/dig_test.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/levels/0.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/levels/bicho.tscn" type="PackedScene" id=7]
 
 [node name="Levels" type="Node"]
 script = ExtResource( 2 )
@@ -25,3 +26,7 @@ scene = ExtResource( 5 )
 [node name="3" type="Node" parent="."]
 script = ExtResource( 1 )
 scene = ExtResource( 6 )
+
+[node name="4" type="Node" parent="."]
+script = ExtResource( 1 )
+scene = ExtResource( 7 )

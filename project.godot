@@ -222,6 +222,8 @@ prev_pipe={
 2d_physics/layer_8="pickup"
 2d_physics/layer_9="background_wall"
 2d_physics/layer_10="cursor"
+2d_physics/layer_11="event"
+2d_physics/layer_12="worm_stop"
 
 [physics]
 
