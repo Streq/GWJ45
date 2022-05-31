@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/terrain/ground.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/worker/worker.tscn" type="PackedScene" id=2]
@@ -15,8 +15,9 @@
 [ext_resource path="res://src/test/dig/lose_timer.gd" type="Script" id=13]
 [ext_resource path="res://src/pipe/goal_pipe.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/font/BitmapFont.res" type="BitmapFont" id=15]
+[ext_resource path="res://src/terrain/win_timer.gd" type="Script" id=16]
 
-[node name="Node2D2" type="Node2D"]
+[node name="Node2D3" type="Node2D"]
 position = Vector2( 0, 64 )
 script = ExtResource( 10 )
 song = "gameplay"
@@ -170,6 +171,11 @@ position = Vector2( 40, 120 )
 [node name="ladder6" parent="." instance=ExtResource( 11 )]
 position = Vector2( 40, 104 )
 
+[node name="win_timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+script = ExtResource( 16 )
+
 [node name="lose_timer" type="Timer" parent="." groups=["lose_timer"]]
 wait_time = 400.0
 one_shot = true
@@ -195,3 +201,4 @@ align = 1
 [node name="background2" parent="." instance=ExtResource( 12 )]
 
 [connection signal="goal" from="goal_pipe" to="CanvasLayer/win_text" method="set_visible" binds= [ true ]]
+[connection signal="goal" from="goal_pipe" to="win_timer" method="_on_goal"]
