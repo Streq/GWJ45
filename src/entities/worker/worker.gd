@@ -49,7 +49,7 @@ func _physics_process(delta):
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
-	if is_on_floor() and air and fall_speed > 150.0:
+	if is_on_floor() and air and fall_speed > 300.0:
 		get_hurt(1, Vector2(0,-75))
 		
 	
