@@ -1,7 +1,7 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://src/util/state_machine/state_machine.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/entities/worker/bag.gd" type="Script" id=2]
+[ext_resource path="res://src/entities/worker/bag.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/entities/worker/drill.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/texture/worker0.png" type="Texture" id=4]
 [ext_resource path="res://src/entities/worker/worker.gd" type="Script" id=5]
@@ -20,12 +20,9 @@
 [ext_resource path="res://assets/audio/sfx/Jump.ogg" type="AudioStream" id=19]
 [ext_resource path="res://assets/audio/sfx/Stairs_Step.ogg" type="AudioStream" id=20]
 [ext_resource path="res://assets/audio/sfx/Land.ogg" type="AudioStream" id=21]
-[ext_resource path="res://assets/audio/sfx/Colocar_tuberia.ogg" type="AudioStream" id=24]
-[ext_resource path="res://assets/audio/sfx/Girar_Tuberia.ogg" type="AudioStream" id=25]
 [ext_resource path="res://src/entities/worker/worker_sprite.gd" type="Script" id=26]
 [ext_resource path="res://src/HUD/cursor.tscn" type="PackedScene" id=27]
 [ext_resource path="res://src/HUD/cursor_range.tscn" type="PackedScene" id=28]
-[ext_resource path="res://assets/audio/sfx/LFO_Negativo01_04.ogg" type="AudioStream" id=29]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7.5, 7.5 )
@@ -223,16 +220,13 @@ tracks/1/keys = {
 "times": PoolRealArray( 0.1, 0.4 )
 }
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 1, 1 )
-
 [node name="worker" type="KinematicBody2D" groups=["player"]]
 collision_layer = 0
 script = ExtResource( 5 )
 speed = 70.0
 gravity = 300.0
 jump_speed = 105.0
-climb_speed = 50.0
+climb_speed = 45.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 0.5 )
@@ -332,25 +326,7 @@ bus = "sfx"
 
 [node name="cursor" parent="." instance=ExtResource( 27 )]
 
-[node name="bag" type="Area2D" parent="cursor"]
-collision_layer = 0
-collision_mask = 128
-script = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="cursor/bag"]
-shape = SubResource( 3 )
-
-[node name="put_sound" type="AudioStreamPlayer2D" parent="cursor/bag"]
-stream = ExtResource( 24 )
-bus = "sfx"
-
-[node name="rotate_sound" type="AudioStreamPlayer2D" parent="cursor/bag"]
-stream = ExtResource( 25 )
-bus = "sfx"
-
-[node name="full_bag_sound" type="AudioStreamPlayer2D" parent="cursor/bag"]
-stream = ExtResource( 29 )
-bus = "sfx"
+[node name="bag" parent="cursor" instance=ExtResource( 2 )]
 
 [node name="drill" parent="cursor" instance=ExtResource( 3 )]
 
