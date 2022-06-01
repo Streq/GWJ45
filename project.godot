@@ -103,6 +103,7 @@ Factory="*res://src/global/Factory.tscn"
 Levels="*res://src/global/levels.tscn"
 Music="*res://src/global/music.tscn"
 Global="*res://src/global/global.tscn"
+FrameStep="*res://src/util/debug/frame_step.tscn"
 
 [display]
 
