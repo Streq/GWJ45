@@ -229,9 +229,9 @@ extents = Vector2( 1, 1 )
 [node name="worker" type="KinematicBody2D" groups=["player"]]
 collision_layer = 0
 script = ExtResource( 5 )
-speed = 65.0
-gravity = 250.0
-jump_speed = 100.0
+speed = 70.0
+gravity = 300.0
+jump_speed = 105.0
 climb_speed = 50.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

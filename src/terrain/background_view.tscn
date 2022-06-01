@@ -23,6 +23,7 @@ margin_left = -24.0
 margin_top = -56.0
 margin_right = 344.0
 margin_bottom = 280.0
+mouse_filter = 2
 texture = ExtResource( 1 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -35,6 +36,7 @@ margin_left = -24.0
 margin_top = -56.0
 margin_right = 344.0
 margin_bottom = 280.0
+mouse_filter = 2
 texture = ExtResource( 5 )
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -47,6 +49,7 @@ margin_left = -24.0
 margin_top = -56.0
 margin_right = 344.0
 margin_bottom = 280.0
+mouse_filter = 2
 texture = ExtResource( 3 )
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -58,6 +61,7 @@ margin_left = -24.0
 margin_top = -56.0
 margin_right = 344.0
 margin_bottom = 280.0
+mouse_filter = 2
 texture = ExtResource( 4 )
 
 [node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -67,4 +71,5 @@ margin_left = -24.0
 margin_top = 152.0
 margin_right = 344.0
 margin_bottom = 277.0
+mouse_filter = 2
 texture = ExtResource( 2 )
