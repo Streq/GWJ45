@@ -22,8 +22,8 @@ func _on_drill_body_entered(body):
 				var tile = Vector2(i,j)
 				if tm.get_cellv(tile) != -1:
 					tm.drill_tile(tile)
-					if !ground_sound.playing or ground_sound.get_playback_position() > 0.1:
-						ground_sound.play()
+#					if !ground_sound.playing or ground_sound.get_playback_position() > 0.1:
+#						ground_sound.play()
 					var aux = position
 					position = position+Vector2(1,1)
 					position = aux

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Tongue.ogg-6315f76e5b0664d6b3ebb5c043cd998f.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/sfx/Tongue.ogg"
+dest_files=[ "res://.import/Tongue.ogg-6315f76e5b0664d6b3ebb5c043cd998f.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

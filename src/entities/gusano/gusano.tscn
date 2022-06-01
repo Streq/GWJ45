@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/entities/gusano.gd" type="Script" id=1]
 [ext_resource path="res://assets/texture/gusano.png" type="Texture" id=2]
@@ -8,6 +8,10 @@
 [ext_resource path="res://assets/texture/gusano_front.png" type="Texture" id=6]
 [ext_resource path="res://assets/texture/tongue.png" type="Texture" id=7]
 [ext_resource path="res://src/entities/gusano/kill_zone.gd" type="Script" id=8]
+[ext_resource path="res://assets/audio/sfx/Growl.ogg" type="AudioStream" id=9]
+[ext_resource path="res://assets/audio/sfx/Tongue2.ogg" type="AudioStream" id=10]
+[ext_resource path="res://assets/audio/sfx/worm_step.ogg" type="AudioStream" id=11]
+[ext_resource path="res://assets/audio/sfx/Tongue.ogg" type="AudioStream" id=12]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 96, 8 )
@@ -54,6 +58,7 @@ shape = SubResource( 1 )
 
 [node name="ground_sound" type="AudioStreamPlayer2D" parent="Area2D" groups=["worm"]]
 stream = ExtResource( 3 )
+pitch_scale = 0.19
 bus = "sfx"
 
 [node name="rock_sound" type="AudioStreamPlayer2D" parent="Area2D"]
@@ -76,6 +81,26 @@ script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="kill_zone"]
 shape = SubResource( 1 )
+
+[node name="growl_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+pitch_scale = 0.6
+bus = "sfx"
+
+[node name="tongue_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 12 )
+pitch_scale = 0.6
+bus = "sfx"
+
+[node name="step_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 11 )
+pitch_scale = 0.22
+bus = "sfx"
+
+[node name="tongue_sound2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 10 )
+pitch_scale = 0.6
+bus = "sfx"
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_drill_body_entered"]
 [connection signal="area_entered" from="stop_detector" to="." method="_on_stop_detector_area_entered"]
