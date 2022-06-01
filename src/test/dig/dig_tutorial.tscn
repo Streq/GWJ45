@@ -161,8 +161,7 @@ margin_top = 328.0
 margin_right = 268.0
 margin_bottom = 365.0
 custom_fonts/font = ExtResource( 7 )
-text = "x- dig
-use ladders!
+text = "use ladders!
 ladders can only be put against a background wall
 remember: if you get stuck, restart with R
 "
