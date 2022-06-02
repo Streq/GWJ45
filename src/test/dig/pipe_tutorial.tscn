@@ -129,7 +129,8 @@ left click- pick up
             drill
 right click (or q and e)- alternate pipe
 mousewheel- rotate pipe  
-r- restart         "
+r- restart         
+enter- pause"
 
 [node name="Label3" type="Label" parent="CanvasLayer"]
 visible = false
