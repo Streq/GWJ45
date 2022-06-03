@@ -33,6 +33,7 @@ func _enter_tree():
 	for pipe in pipes.keys():
 		cursors[pipe] = Factory.items[pipe].put_cursor.instance()
 		var cursor = cursors[pipe]
+		cursor.cursor = get_parent()
 		get_tree().current_scene.call_deferred("add_child", cursor)
 		cursor.visible = false
 #		cursor.owner = self
@@ -67,7 +68,6 @@ func _physics_process(delta):
 	
 	if (input.is_action_just_pressed("bag") 
 		and enabled
-		and owner.cursor.is_within_range()
 		and owner.cursor.available_action == "bag"):
 			var areas = put_detect.get_overlapping_areas()
 			if areas.size():

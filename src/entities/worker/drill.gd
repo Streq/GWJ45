@@ -13,15 +13,19 @@ func has_ground() -> bool:
 func _physics_process(delta):
 	
 	var input = owner.input
-	if input.is_action_pressed("drill") \
-		and owner.cursor.is_within_range() \
-		and owner.cursor.available_action == "drill":
-			for body in get_overlapping_bodies():
-				_on_drill_body_entered(body)
-			rotation = (global_position-owner.global_position).angle()
-			visible = true
-	else:
-		visible = false
+	visible = false
+	if owner.cursor.available_action == "drill":
+		if input.is_action_pressed("drill"):
+			owner.cursor.captured = true
+			
+			if owner.cursor.is_within_range():
+				for body in get_overlapping_bodies():
+					_on_drill_body_entered(body)
+				rotation = (global_position-owner.global_position).angle()
+				visible = true
+				
+		else:
+			owner.cursor.captured = false
 	
 	
 	if visible:

@@ -19,6 +19,7 @@ func _physics_process(delta):
 		else:
 			available_action = "bag"
 
+
 func is_within_range() -> bool:
 	return range_detect.get_overlapping_areas().size()
 

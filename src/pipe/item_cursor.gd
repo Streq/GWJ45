@@ -2,6 +2,8 @@ extends Node2D
 
 var can_put := true setget set_can_put
 
+var cursor
+
 func can_put(where: Area2D):
 	# initialize parameters for query
 	var params = Physics2DShapeQueryParameters.new()
@@ -41,5 +43,5 @@ func _physics_process(delta):
 		if detector.get_overlapping_areas().size()>0 or detector.get_overlapping_bodies().size()>0:
 			has_blacklisted = true
 			break
-	set_can_put(has_needed and !has_blacklisted)  
+	set_can_put(has_needed and !has_blacklisted and cursor.is_within_range())  
 	
