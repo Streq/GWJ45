@@ -102,7 +102,7 @@ func _process(delta):
 				if (enabled 
 					and pipes.has(current) 
 					and pipes[current] 
-					and current_cursor.anything_overlaps(put_detect)
+					and !PhysicsUtils.anything_overlaps(put_detect)
 					and owner.cursor.is_within_range()):
 						var pipe = Factory.items[current].scene.instance()
 						pipe.transform = pipe_transform

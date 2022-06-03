@@ -21,5 +21,5 @@ func _physics_process(delta):
 
 
 func is_within_range() -> bool:
-	return range_detect.get_overlapping_areas().size()
+	return PhysicsUtils.anything_overlaps(range_detect)
 

@@ -19,8 +19,8 @@ func _physics_process(delta):
 			owner.cursor.captured = true
 			
 			if owner.cursor.is_within_range():
-				for body in get_overlapping_bodies():
-					_on_drill_body_entered(body)
+				for result in PhysicsUtils.query_overlaps(self):
+					_on_drill_body_entered(result.collider)
 				rotation = (global_position-owner.global_position).angle()
 				visible = true
 				
