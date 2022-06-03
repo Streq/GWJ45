@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/global/node_utils.gd"
 }, {
+"base": "Reference",
+"class": "PhysicsUtils",
+"language": "GDScript",
+"path": "res://src/global/physics_utils.gd"
+}, {
 "base": "Node2D",
 "class": "Pipe",
 "language": "GDScript",
@@ -81,6 +86,7 @@ _global_script_class_icons={
 "InputUtils": "",
 "Math": "",
 "NodeUtils": "",
+"PhysicsUtils": "",
 "Pipe": "",
 "PipeEntry": "",
 "PoolArray": "",
