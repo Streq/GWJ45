@@ -105,7 +105,6 @@ jobs:
   UpdateNightlyRelease:
     needs: BuildAndPublish
     permissions: write-all
-    if: ${{ contains(github.ref, 'main') }}
     runs-on: ubuntu-latest
     outputs: 
       url: ${{ steps.create_release.outputs.html_url }}
@@ -148,7 +147,6 @@ jobs:
   UploadToGithubPages:
     needs: BuildAndPublish
     permissions: write-all
-    if: ${{ contains(github.ref, 'main') }}
     runs-on: ubuntu-latest
     steps:
       - name: Download HTML5 Export
