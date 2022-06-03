@@ -26,6 +26,12 @@ collision_mask = 128
 [node name="CollisionShape2D" type="CollisionShape2D" parent="blacklist_detectors/pickable_detector"]
 shape = SubResource( 1 )
 
+[node name="ground_detector" type="Area2D" parent="blacklist_detectors"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="blacklist_detectors/ground_detector"]
+shape = SubResource( 1 )
+
 [node name="needed_detectors" type="Node2D" parent="."]
 
 [node name="background_detector" type="Area2D" parent="needed_detectors"]
