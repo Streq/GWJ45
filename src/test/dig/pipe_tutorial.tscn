@@ -118,7 +118,7 @@ align = 1
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 margin_left = 112.0
-margin_top = 312.0
+margin_top = 304.0
 margin_right = 316.0
 margin_bottom = 373.0
 custom_fonts/font = ExtResource( 15 )
@@ -130,7 +130,8 @@ left click- pick up
 right click (or q and e)- alternate pipe
 mousewheel- rotate pipe  
 r- restart         
-enter- pause"
+enter- pause
+F- toggle fullscreen"
 
 [node name="Label3" type="Label" parent="CanvasLayer"]
 visible = false
