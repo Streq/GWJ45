@@ -70,7 +70,7 @@ func _physics_process(delta):
 		and enabled
 		and owner.cursor.available_action == "bag"):
 			var areas = put_detect.get_overlapping_areas()
-			if areas.size():
+			if areas.size() and owner.cursor.is_within_range():
 				_on_bag_area_entered(areas[-1])
 			else: 
 				putting = true
