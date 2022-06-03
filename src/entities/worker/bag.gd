@@ -99,7 +99,7 @@ func _process(delta):
 		if (enabled 
 			and pipes.has(current) 
 			and pipes[current] 
-			and current_cursor.can_put
+			and current_cursor.can_put(self)
 			and owner.cursor.is_within_range()):
 				var pipe = Factory.items[current].scene.instance()
 				pipe.transform = pipe_transform
