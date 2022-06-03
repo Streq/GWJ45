@@ -134,7 +134,7 @@ jobs:
           fail-if-no-assets: false
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: nightly
-        assets: '*'
+          assets: '*'
           
       - name: Upload Exports
         id: upload-release-asset
